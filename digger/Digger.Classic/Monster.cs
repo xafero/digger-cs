@@ -1,3 +1,6 @@
+using System;
+
+namespace DiggerClassic {
 class Monster {
 
 Digger dig;
@@ -6,9 +9,9 @@ _monster[] mondat = { new _monster (), new _monster (), new _monster (), new _mo
 
 int nextmonster=0,totalmonsters=0,maxmononscr=0,nextmontime=0,mongaptime=0;
 
-boolean unbonusflag=false, mongotgold=false;
+bool unbonusflag=false, mongotgold=false;
 
-Monster (Digger d) {
+internal Monster (Digger d) {
 	dig = d;
 }
 void checkcoincide (int mon,int bits) {
@@ -17,7 +20,8 @@ void checkcoincide (int mon,int bits) {
 	if (((bits&b)!=0) && (mondat[mon].dir==mondat[m].dir) && (mondat[m].stime==0) && (mondat[mon].stime==0))
 	  mondat[m].dir=dig.reversedir(mondat[m].dir);
 }
-void checkmonscared (int h) {
+
+internal void checkmonscared (int h) {
   int m;
   for (m=0;m<6;m++)
 	if ((h==mondat[m].h) && (mondat[m].dir==2))
@@ -47,7 +51,8 @@ void createmonster () {
 	  break;
 	}
 }
-void domonsters () {
+
+internal void domonsters () {
   int i;
   if (nextmontime>0)
 	nextmontime--;
@@ -81,13 +86,14 @@ void domonsters () {
 		mondie(i);
 	}
 }
-void erasemonsters () {
+
+internal void erasemonsters () {
   int i;
   for (i=0;i<6;i++)
 	if (mondat[i].flag)
 	  dig.Sprite.erasespr(i+8);
 }
-boolean fieldclear (int dir,int x,int y) {
+bool fieldclear (int dir,int x,int y) {
   switch (dir) {
 	case 0:
 	  if (x<14)
@@ -112,13 +118,16 @@ boolean fieldclear (int dir,int x,int y) {
 		if ((getfield(x,y+1)&0x2000)==0)
 		  if ((getfield(x,y+1)&0x40)==0 || (getfield(x,y)&0x800)==0)
 			return true;
+	  break;
   }
   return false;
 }
-int getfield (int x,int y) {
+
+internal int getfield (int x,int y) {
   return dig.Drawing.field[y*15+x];
 }
-void incmont (int n) {
+
+internal void incmont (int n) {
   int m;
   if (n>6)
 	n=6;
@@ -133,7 +142,8 @@ void incpenalties (int bits) {
 	b<<=1;
   }
 }
-void initmonsters () {
+
+internal void initmonsters () {
   int i;
   for (i=0;i<6;i++)
 	mondat[i].flag=false;
@@ -156,11 +166,13 @@ void initmonsters () {
 	case 9:
 	case 10:
 	  maxmononscr=5;
+	  break;
   }
   nextmontime=10;
   unbonusflag=true;
 }
-void killmon (int mon) {
+
+internal void killmon (int mon) {
   if (mondat[mon].flag) {
 	mondat[mon].flag=mondat[mon].alive=false;
 	dig.Sprite.erasespr(mon+8);
@@ -168,7 +180,8 @@ void killmon (int mon) {
 	  totalmonsters++;
   }
 }
-int killmonsters (int bits) {
+
+internal int killmonsters (int bits) {
   int m,b,n=0;
   for (m=0,b=256;m<6;m++,b<<=1)
 	if ((bits&b)!=0) {
@@ -179,7 +192,7 @@ int killmonsters (int bits) {
 }
 void monai(int mon) {
   int clbits,monox,monoy,dir,mdirp1,mdirp2,mdirp3,mdirp4,t;
-  boolean push;
+  bool push;
   monox=mondat[mon].x;
   monoy=mondat[mon].y;
   if (mondat[mon].xr==0 && mondat[mon].yr==0) {
@@ -196,7 +209,7 @@ void monai(int mon) {
 
 	/* Set up monster direction properties to chase dig */
 
-	if (Math.abs(dig.diggery-mondat[mon].y)>Math.abs(dig.diggerx-mondat[mon].x)) {
+	if (Math.Abs(dig.diggery-mondat[mon].y)>Math.Abs(dig.diggerx-mondat[mon].x)) {
 	  if (dig.diggery<mondat[mon].y) { mdirp1=2; mdirp4=6; }
 							else { mdirp1=6; mdirp4=2; }
 	  if (dig.diggerx<mondat[mon].x) { mdirp2=4; mdirp3=0; }
@@ -428,12 +441,15 @@ void mondie (int mon) {
 		killmon(mon);
 		dig.Scores.scorekill();
 	  }
+	  break;
   }
 }
-void mongold () {
+
+internal void mongold () {
   mongotgold=true;
 }
-int monleft () {
+
+internal int monleft () {
   return nmononscr()+totalmonsters-nextmonster;
 }
 int nmononscr () {
@@ -448,11 +464,13 @@ void squashmonster (int mon,int death,int bag) {
   mondat[mon].death=death;
   mondat[mon].bag=bag;
 }
-void squashmonsters (int bag,int bits) {
+
+internal void squashmonsters (int bag,int bits) {
   int m,b;
   for (m=0,b=256;m<6;m++,b<<=1)
 	if ((bits&b)!=0)
 	  if (mondat[m].y>=dig.Bags.bagy(bag))
 		squashmonster(m,1,bag);
+}
 }
 }
