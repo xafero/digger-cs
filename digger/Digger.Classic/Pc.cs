@@ -1,45 +1,64 @@
-import java.awt.*;
-import java.awt.image.*;
+namespace DiggerClassic {
+
+using java;
+using java.awt;
+using java.awt.image;
 
 class Pc {
 
 Digger dig;
 
-Image[] image = new Image[2];
-Image currentImage;
+internal Image[] image = new Image[2];
+internal Image currentImage;
 
-MemoryImageSource[] source = new MemoryImageSource[2];
-MemoryImageSource currentSource;
+internal MemoryImageSource[] source = new MemoryImageSource[2];
+internal MemoryImageSource currentSource;
 
-int width = 320, height = 200, size = width * height;
+internal const int width = 320;
+internal const int height = 200;
+int size = width * height;
 
-int[] pixels;
+internal int[] pixels;
 
-byte[][][] pal = { 
-
-{	{ 0, (byte)0x00, (byte)0xAA, (byte)0xAA },
+internal byte[][][] pal = {
+new byte[][] {
+ new byte[] 
+	{ 0, (byte)0x00, (byte)0xAA, (byte)0xAA },
+ new byte[] 
 	{ 0, (byte)0xAA, (byte)0x00, (byte)0x54 },
-	{ 0, (byte)0x00, (byte)0x00, (byte)0x00 } },
+ new byte[] 
+	{ 0, (byte)0x00, (byte)0x00, (byte)0x00 } 
+},
+	
+new byte[][] {
+ new byte[] 
+    { 0, (byte)0x54, (byte)0xFF, (byte)0xFF },
+ new byte[] 
+    { 0, (byte)0xFF, (byte)0x54, (byte)0xFF },
+ new byte[] 
+    { 0, (byte)0x54, (byte)0x54, (byte)0x54 } 
+} 
+};
 
-{ { 0, (byte)0x54, (byte)0xFF, (byte)0xFF },
-	{ 0, (byte)0xFF, (byte)0x54, (byte)0xFF },
-	{ 0, (byte)0x54, (byte)0x54, (byte)0x54 } } };
-
-Pc (Digger d) {
+internal Pc (Digger d) {
 	dig = d;
 }
-void gclear () {
+
+internal void gclear () {
 	for (int i=0;i<size;i++)
 		pixels[i] = 0;
 	currentSource.newPixels ();
 }
-long gethrt () {
-	return System.currentTimeMillis ();
+
+internal long gethrt () {
+	return SystemX.currentTimeMillis ();
 }
-int getkips () {
+
+internal int getkips () {
 	return 0;		// phony
 }
-void ggeti (int x, int y, short[] p, int w, int h) {
+
+internal void ggeti (int x, int y, short[] p, int w, int h) {
 
 	int src = 0;
 	int dest = y*width + (x&0xfffc);
@@ -49,30 +68,34 @@ void ggeti (int x, int y, short[] p, int w, int h) {
 		for (int j=0;j<w;j++) {
 			p[src++] = (short)((((((pixels[d]<<2)|pixels[d+1])<<2)|pixels[d+2])<<2)|pixels[d+3]);
 			d+=4;
-			if (src==p.length)
+			if (src==p.Length)
 				return;
 		}
 		dest += width;
 	}
 
 }
-int ggetpix (int x, int y) {
+
+internal int ggetpix (int x, int y) {
 	int ofs = width*y + x&0xfffc;
 	return (((((pixels[ofs]<<2)|pixels[ofs+1])<<2)|pixels[ofs+2])<<2)|pixels[ofs+3];
 }
-void ginit () {
+
+internal void ginit () {
 }
-void ginten (int inten) {
+
+internal void ginten (int inten) {
 	currentSource = source[inten&1];
 	currentImage = image[inten&1];
 	currentSource.newPixels ();
 }
-void gpal (int pal) {
+
+internal void gpal (int pal) {
 }
-void gputi (int x, int y, short[] p, int w, int h) {
+internal void gputi (int x, int y, short[] p, int w, int h) {
 	gputi (x, y, p, w, h, true);
 }
-void gputi (int x, int y, short[] p, int w, int h, boolean b) {
+internal void gputi (int x, int y, short[] p, int w, int h, bool b) {
 
 	int src = 0;
 	int dest = y*width + (x&0xfffc);
@@ -89,14 +112,15 @@ void gputi (int x, int y, short[] p, int w, int h, boolean b) {
 			px >>= 2;
 			pixels[d] = px&3;
 			d+=4;
-			if (src==p.length)
+			if (src==p.Length)
 				return;
 		}
 		dest += width;
 	}
 
 }
-void gputim (int x, int y, int ch, int w, int h) {
+
+internal void gputim (int x, int y, int ch, int w, int h) {
 
 	short[] spr = cgagrafx.cgatable[ch*2];
 	short[] msk = cgagrafx.cgatable[ch*2+1];
@@ -122,7 +146,7 @@ void gputim (int x, int y, int ch, int w, int h) {
 			if ((mx&(3<<6))==0)
 				pixels[d] = px&3;
 			d+= 4;
-			if (src==spr.length || src==msk.length) {
+			if (src==spr.Length || src==msk.Length) {
 				return;
 			}
 		}
@@ -130,13 +154,14 @@ void gputim (int x, int y, int ch, int w, int h) {
 	}
 
 }
-void gtitle () {
+
+internal void gtitle () {
 
 	int src = 0, dest = 0, plus = 0;
 
 	while (true) {
 
-		if (src>=cgagrafx.cgatitledat.length)
+		if (src>=cgagrafx.cgatitledat.Length)
 			break;
 
 		int b = cgagrafx.cgatitledat[src++], l, c;
@@ -176,10 +201,10 @@ void gtitle () {
 	}
 
 }
-void gwrite (int x, int y, int ch, int c) {
+internal void gwrite (int x, int y, int ch, int c) {
 	gwrite (x, y, ch, c, false);
 }
-void gwrite (int x, int y, int ch, int c, boolean upd) {
+internal void gwrite (int x, int y, int ch, int c, bool upd) {
 
 	int dest = x+y*width, ofs = 0, color = c&3;
 
@@ -211,5 +236,6 @@ void gwrite (int x, int y, int ch, int c, boolean upd) {
 	if (upd)
 		currentSource.newPixels (x, y, 12, 12);
 	
+}
 }
 }
