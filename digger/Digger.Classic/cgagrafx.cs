@@ -1917,7 +1917,7 @@ static short[] cgaelifemask={
   0x00,0x00,0x00,0x00,
   0xc0,0x00,0x00,0x03};
 
-static short[][] cgatable={
+internal static short[][] cgatable={
   cgazero60,    cgaediggermask,    /* 0 */
   cgardigger1,  cgardigger1mask,
   cgardigger2,  cgardigger2mask,
@@ -2043,7 +2043,7 @@ static short[][] cgatable={
   cgazero60,    cgaelifemask };
 
 
-static short[] cgatitledat={
+internal static short[] cgatitledat={
   254,0,0,254,0,0,254,208,0,254,80,170,168,254,39,0,170,254,38,0,
   42,168,254,39,0,170,254,38,0,42,168,254,39,0,170,254,38,0,42,168,
   254,39,0,170,254,38,0,42,168,254,39,0,170,254,38,0,42,168,254,39,
