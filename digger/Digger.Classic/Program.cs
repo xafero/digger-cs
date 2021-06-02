@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Digger.Classic
+namespace DiggerClassic
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Digger!");
         }
