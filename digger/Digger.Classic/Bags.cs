@@ -1,3 +1,4 @@
+namespace DiggerClassic {
 class Bags {
 
 Digger dig;
@@ -6,12 +7,13 @@ _bag[] bagdat1 = { new _bag (), new _bag (), new _bag (), new _bag (), new _bag 
 
 int pushcount=0,goldtime=0;
 
-int wblanim[]={2,0,1,0};	// [4]
+int[] wblanim={2,0,1,0};	// [4]
 
-Bags (Digger d) {
+internal Bags (Digger d) {
 	dig = d;
 }
-int bagbits () {
+
+internal int bagbits () {
   int bag,b,bags=0;
   for (bag=1,b=2;bag<8;bag++,b<<=1)
 	if (bagdat[bag].exist)
@@ -33,10 +35,12 @@ void baghitground (int bag) {
 	if ((b&clbits)!=0)
 	  removebag(bn);
 }
-int bagy (int bag) {
+
+internal int bagy (int bag) {
   return bagdat[bag].y;
 }
-void cleanupbags () {
+
+internal void cleanupbags () {
   int bpa;
   dig.Sound.soundfalloff();
   for (bpa=1;bpa<8;bpa++) {
@@ -52,9 +56,10 @@ void cleanupbags () {
 		bagdat2[bpa].copyFrom (bagdat[bpa]);
   }
 }
-void dobags () {
+
+internal void dobags () {
   int bag;
-  boolean soundfalloffflag=true,soundwobbleoffflag=true;
+  bool soundfalloffflag=true,soundwobbleoffflag=true;
   for (bag=1;bag<8;bag++)
 	if (bagdat[bag].exist) {
 	  if (bagdat[bag].gt!=0) {
@@ -93,7 +98,8 @@ void dobags () {
   if (soundwobbleoffflag)
 		dig.Sound.soundwobbleoff();
 }
-void drawbags () {
+
+internal void drawbags () {
   int bag;
   for (bag=1;bag<8;bag++) {
   if (dig.Main.getcplayer()==0)
@@ -104,7 +110,8 @@ void drawbags () {
 	  dig.Sprite.movedrawspr(bag,bagdat[bag].x,bagdat[bag].y);
   }
 }
-int getbagdir (int bag) {
+
+internal int getbagdir (int bag) {
   if (bagdat[bag].exist)
 	return bagdat[bag].dir;
   return -1;
@@ -122,7 +129,8 @@ void getgold (int bag) {
 	dig.Monster.mongold();
   removebag(bag);
 }
-int getnmovingbags () {
+
+internal int getnmovingbags () {
   int bag,n=0;
   for (bag=1;bag<8;bag++)
 	if (bagdat[bag].exist && bagdat[bag].gt<10 &&
@@ -130,7 +138,8 @@ int getnmovingbags () {
 	  n++;
   return n;
 }
-void initbags () {
+
+internal void initbags () {
   int bag,x,y;
   pushcount=0;
   goldtime=150-dig.Main.levof10()*10;
@@ -162,9 +171,9 @@ void initbags () {
   	for (int i=1;i<8;i++)
   		bagdat2[i].copyFrom (bagdat[i]);
 }
-boolean pushbag (int bag,int dir) {
+bool pushbag (int bag,int dir) {
   int x,y,h,v,ox,oy,clbits;
-  boolean push=true;
+  bool push=true;
   ox=x=bagdat[bag].x;
   oy=y=bagdat[bag].y;
   h=bagdat[bag].h;
@@ -204,6 +213,7 @@ boolean pushbag (int bag,int dir) {
 		dig.Drawing.eatfield(x,y,dir);
 		dig.killemerald(h,v);
 		y+=6;
+		break;
 	}
 	switch(dir) {
 	  case 6:
@@ -236,6 +246,7 @@ boolean pushbag (int bag,int dir) {
 		  dig.Main.incpenalty();
 		  push=false;
 		}
+		break;
 	}
 	if (push)
 	  bagdat[bag].dir=dir;
@@ -250,18 +261,20 @@ boolean pushbag (int bag,int dir) {
   }
   return push;
 }
-boolean pushbags (int dir,int bits) {
+
+internal bool pushbags (int dir,int bits) {
   int bag,bit;
-  boolean push=true;
+  bool push=true;
   for (bag=1,bit=2;bag<8;bag++,bit<<=1)
 	if ((bits&bit)!=0)
 	  if (!pushbag(bag,dir))
 		push=false;
   return push;
 }
-boolean pushudbags (int bits) {
+
+internal bool pushudbags (int bits) {
   int bag,b;
-  boolean push=true;
+  bool push=true;
   for (bag=1,b=2;bag<8;bag++,b<<=1)
 	if ((bits&b)!=0)
 	  if (bagdat[bag].gt!=0)
@@ -276,7 +289,8 @@ void removebag (int bag) {
 	dig.Sprite.erasespr(bag);
   }
 }
-void removebags (int bits) {
+
+internal void removebags (int bits) {
   int bag,b;
   for (bag=1,b=2;bag<8;bag++,b<<=1)
 	if ((bagdat[bag].exist) && ((bits&b)!=0))
@@ -338,11 +352,13 @@ void updatebag (int bag) {
 		  if (yr==0)
 			baghitground(bag);
 	  dig.Monster.checkmonscared(bagdat[bag].h);
+	  break;
   }
   if (bagdat[bag].dir!=-1)
 	if (bagdat[bag].dir!=6 && pushcount!=0)
 	  pushcount--;
 	else
 	  pushbag(bag,bagdat[bag].dir);
+}
 }
 }
