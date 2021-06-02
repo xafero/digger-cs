@@ -1,4 +1,8 @@
+namespace DiggerClassic {
 class _game {
-  int lives,level;
-  boolean dead,levdone;
+  internal int lives;
+  internal int level;
+  internal bool dead;
+  internal bool levdone;
+}
 }
