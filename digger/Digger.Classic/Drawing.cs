@@ -1,8 +1,9 @@
+namespace DiggerClassic {
 class Drawing {
 
 Digger dig;
 	
- int field1[]={	// [150]
+ int[] field1={	// [150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -14,7 +15,7 @@ Digger dig;
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
- int field2[]={	// [150]
+ int[] field2={	// [150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -26,7 +27,7 @@ Digger dig;
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
- int field[]={	// [150]
+ internal int[] field={	// [150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -55,14 +56,14 @@ Digger dig;
   bonusbuf = new short[480],
   firebuf = new short[128];
 
- int bitmasks[]={0xfffe,0xfffd,0xfffb,0xfff7,0xffef,0xffdf,0xffbf,0xff7f,0xfeff,0xfdff,0xfbff,0xf7ff};	// [12]
+ int[] bitmasks={0xfffe,0xfffd,0xfffb,0xfff7,0xffef,0xffdf,0xffbf,0xff7f,0xfeff,0xfdff,0xfbff,0xf7ff};	// [12]
 
- int monspr[]={0,0,0,0,0,0};	// [6]
- int monspd[]={0,0,0,0,0,0};	// [6]
+ int[] monspr={0,0,0,0,0,0};	// [6]
+ int[] monspd={0,0,0,0,0,0};	// [6]
 
  int digspr=0,digspd=0,firespr=0,fireheight=8;
 
-Drawing (Digger d) {
+ internal Drawing (Digger d) {
 	dig = d;
 }
 void createdbfspr () {
@@ -73,7 +74,8 @@ void createdbfspr () {
   dig.Sprite.createspr(14,81,bonusbuf,4,15,0,0);
   dig.Sprite.createspr(15,82,firebuf,2,fireheight,0,0);
 }
-void creatembspr () {
+
+internal void creatembspr () {
   int i;
   dig.Sprite.createspr(1,62,bagbuf1,4,15,0,0);
   dig.Sprite.createspr(2,62,bagbuf2,4,15,0,0);
@@ -100,16 +102,19 @@ void drawbackg(int l) {
 	for (x=0;x<320;x+=20)
 	  dig.Sprite.drawmiscspr(x,y,93+l,5,4);
 }
-void drawbonus(int x,int y) {
+
+internal void drawbonus(int x,int y) {
   dig.Sprite.initspr(14,81,4,15,0,0);
   dig.Sprite.movedrawspr(14,x,y);
 }
-void drawbottomblob(int x,int y) {
+
+internal void drawbottomblob(int x,int y) {
   dig.Sprite.initmiscspr(x-4,y+15,6,6);
   dig.Sprite.drawmiscspr(x-4,y+15,105,6,6);
   dig.Sprite.getis();
 }
-int drawdigger(int t,int x,int y,boolean f) {
+
+internal int drawdigger(int t,int x,int y,bool f) {
   digspr+=digspd;
   if (digspr==2 || digspr==0)
 	digspd=-digspd;
@@ -127,7 +132,8 @@ int drawdigger(int t,int x,int y,boolean f) {
   }
   return 0;
 }
-void drawemerald(int x,int y) {
+
+internal void drawemerald(int x,int y) {
 	dig.Sprite.initmiscspr(x,y,4,10);
   dig.Sprite.drawmiscspr(x,y,108,4,10);
   dig.Sprite.getis();
@@ -164,7 +170,8 @@ void drawfield () {
 			drawbottomblob(xp,yp);
 	  }
 }
-int drawfire(int x,int y,int t) {
+
+internal int drawfire(int x,int y,int t) {
   if (t==0) {
 	firespr++;
 	if (firespr>2)
@@ -175,16 +182,19 @@ int drawfire(int x,int y,int t) {
 	dig.Sprite.initspr(15,84+t,2,fireheight,0,0);
   return dig.Sprite.drawspr(15,x,y);
 }
-void drawfurryblob(int x,int y) {
+
+internal void drawfurryblob(int x,int y) {
   dig.Sprite.initmiscspr(x-4,y+15,6,8);
   dig.Sprite.drawmiscspr(x-4,y+15,107,6,8);
   dig.Sprite.getis();
 }
-int drawgold(int n,int t,int x,int y) {
+
+internal int drawgold(int n,int t,int x,int y) {
   dig.Sprite.initspr(n,t+62,4,15,0,0);
   return dig.Sprite.drawspr(n,x,y);
 }
-void drawleftblob(int x,int y) {
+
+internal void drawleftblob(int x,int y) {
   dig.Sprite.initmiscspr(x-8,y-1,2,18);
   dig.Sprite.drawmiscspr(x-8,y-1,104,2,18);
   dig.Sprite.getis();
@@ -192,7 +202,8 @@ void drawleftblob(int x,int y) {
 void drawlife(int t,int x,int y) {
   dig.Sprite.drawmiscspr(x,y,t+110,4,12);
 }
-void drawlives () {
+
+internal void drawlives () {
   int l,n;
   n=dig.Main.getlives(1)-1;
   for (l=1;l<5;l++) {
@@ -207,7 +218,8 @@ void drawlives () {
 	}
   }
 }
-int drawmon(int n,boolean nobf,int dir,int x,int y) {
+
+internal int drawmon(int n,bool nobf,int dir,int x,int y) {
   monspr[n]+=monspd[n];
   if (monspr[n]==2 || monspr[n]==0)
 	monspd[n]=-monspd[n];
@@ -224,10 +236,12 @@ int drawmon(int n,boolean nobf,int dir,int x,int y) {
 		break;
 	  case 4:
 		dig.Sprite.initspr(n+8,monspr[n]+77,4,15,0,0);
+		break;
 	}
   return dig.Sprite.drawspr(n+8,x,y);
 }
-int drawmondie(int n,boolean nobf,int dir,int x,int y) {
+
+internal int drawmondie(int n,bool nobf,int dir,int x,int y) {
   if (nobf)
 	dig.Sprite.initspr(n+8,72,4,15,0,0);
   else
@@ -237,20 +251,24 @@ int drawmondie(int n,boolean nobf,int dir,int x,int y) {
 		break;
 	  case 4:
 		dig.Sprite.initspr(n+8,80,4,14,0,0);
+		break;
 	}
   return dig.Sprite.drawspr(n+8,x,y);
 }
-void drawrightblob(int x,int y) {
+
+internal void drawrightblob(int x,int y) {
   dig.Sprite.initmiscspr(x+16,y-1,2,18);
   dig.Sprite.drawmiscspr(x+16,y-1,102,2,18);
   dig.Sprite.getis();
 }
-void drawsquareblob(int x,int y) {
+
+internal void drawsquareblob(int x,int y) {
   dig.Sprite.initmiscspr(x-4,y+17,6,6);
   dig.Sprite.drawmiscspr(x-4,y+17,106,6,6);
   dig.Sprite.getis();
 }
-void drawstatics () {
+
+internal void drawstatics () {
   int x,y;
   for (x=0;x<15;x++)
 	for (y=0;y<10;y++)
@@ -263,14 +281,16 @@ void drawstatics () {
   dig.Pc.ginten(0);
   drawbackg(dig.Main.levplan());
   drawfield();
-  dig.Pc.currentSource.newPixels (0, 0, dig.Pc.width, dig.Pc.height);
+  dig.Pc.currentSource.newPixels (0, 0, Pc.width, Pc.height);
 }
-void drawtopblob(int x,int y) {
+
+internal void drawtopblob(int x,int y) {
   dig.Sprite.initmiscspr(x-4,y-6,6,6);
   dig.Sprite.drawmiscspr(x-4,y-6,103,6,6);
   dig.Sprite.getis();
 }
-void eatfield(int x,int y,int dir) {
+
+internal void eatfield(int x,int y,int dir) {
   int h=(x-12)/20,xr=((x-12)%20)/4,v=(y-18)/18,yr=((y-18)%18)/3;
   dig.Main.incpenalty();
   switch (dir) {
@@ -309,9 +329,11 @@ void eatfield(int x,int y,int dir) {
 	  if ((field[v*15+h]&0xfc0)!=0)
 		break;
 	  field[v*15+h]&=0xdfff;
+	  break;
   }
 }
-void eraseemerald(int x,int y) {
+
+internal void eraseemerald(int x,int y) {
   dig.Sprite.initmiscspr(x,y,4,10);
   dig.Sprite.drawmiscspr(x,y,109,4,10);
   dig.Sprite.getis();
@@ -324,7 +346,8 @@ void initdbfspr () {
   dig.Sprite.initspr(14,81,4,15,0,0);
   dig.Sprite.initspr(15,82,2,fireheight,0,0);
 }
-void initmbspr () {
+
+internal void initmbspr () {
   dig.Sprite.initspr(1,62,4,15,0,0);
   dig.Sprite.initspr(2,62,4,15,0,0);
   dig.Sprite.initspr(3,62,4,15,0,0);
@@ -340,7 +363,8 @@ void initmbspr () {
   dig.Sprite.initspr(13,71,4,15,0,0);
   initdbfspr();
 }
-void makefield () {
+
+internal void makefield () {
   int c,x,y;
   for (x=0;x<15;x++)
 	for (y=0;y<10;y++) {
@@ -356,19 +380,20 @@ void makefield () {
 		field2[y*15+x]=field[y*15+x];
 	}
 }
-void outtext (String p, int x, int y, int c) {
+internal void outtext (string p, int x, int y, int c) {
 	outtext (p, x, y, c, false);
 }
-void outtext (String p, int x, int y, int c, boolean b) {
+internal void outtext (string p, int x, int y, int c, bool b) {
   int i, rx = x;
-  for (i=0;i<p.length ();i++) {
-	dig.Pc.gwrite(x,y,p.charAt (i),c);
+  for (i=0;i<p.Length ;i++) {
+	dig.Pc.gwrite(x,y,p[i],c);
 	x+=12;
   }
   if (b)
-	  dig.Pc.currentSource.newPixels (rx, y, p.length ()*12, 12);
+	  dig.Pc.currentSource.newPixels (rx, y, p.Length *12, 12);
 }
-void savefield () {
+
+internal void savefield () {
   int x,y;
   for (x=0;x<15;x++)
 	for (y=0;y<10;y++)
@@ -376,5 +401,6 @@ void savefield () {
 		field1[y*15+x]=field[y*15+x];
 	  else
 		field2[y*15+x]=field[y*15+x];
+}
 }
 }
