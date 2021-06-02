@@ -1,3 +1,6 @@
+using System.Threading;
+
+namespace DiggerClassic {
 // sound has not been ported yet
 
 class Sound {
@@ -8,55 +11,56 @@ Digger dig;
 int wavetype=0,t2val=0,t0val=0,musvol=0;
 int spkrmode=0,timerrate=0x7d0,timercount=0;
 int pulsewidth=1;
-int volume=0;
+internal int volume=0;
 
 int timerclock=0;		// sint3
 
-boolean soundflag=true,musicflag=true;
+bool soundflag=true;
+internal bool musicflag=true;
 
-boolean sndflag=false,soundpausedflag=false;
+bool sndflag=false,soundpausedflag=false;
 
-boolean soundlevdoneflag=false;
+bool soundlevdoneflag=false;
 int nljpointer=0,nljnoteduration=0;
 
-int newlevjingle[]={0x8e8,0x712,0x5f2,0x7f0,0x6ac,0x54c,0x712,0x5f2,0x4b8,0x474,0x474};	// [11]
+int[] newlevjingle={0x8e8,0x712,0x5f2,0x7f0,0x6ac,0x54c,0x712,0x5f2,0x4b8,0x474,0x474};	// [11]
 
-boolean soundfallflag=false,soundfallf=false;
+bool soundfallflag=false,soundfallf=false;
 int soundfallvalue,soundfalln=0;
 
-boolean soundbreakflag=false;
+bool soundbreakflag=false;
 int soundbreakduration=0,soundbreakvalue=0;
 
-boolean soundwobbleflag=false;
+bool soundwobbleflag=false;
 int soundwobblen=0;
 
-boolean soundfireflag=false;
+bool soundfireflag=false;
 int soundfirevalue,soundfiren=0;
 
-boolean soundexplodeflag=false;
+bool soundexplodeflag=false;
 int soundexplodevalue,soundexplodeduration;
 
-boolean soundbonusflag=false;
+bool soundbonusflag=false;
 int soundbonusn=0;
 
-boolean soundemflag=false;
+bool soundemflag=false;
 
-boolean soundemeraldflag=false;
+bool soundemeraldflag=false;
 int soundemeraldduration,emerfreq,soundemeraldn;
 
-boolean soundgoldflag=false,soundgoldf=false;
+bool soundgoldflag=false,soundgoldf=false;
 int soundgoldvalue1,soundgoldvalue2,soundgoldduration;
 
-boolean soundeatmflag=false;
+bool soundeatmflag=false;
 int soundeatmvalue,soundeatmduration,soundeatmn;
 
-boolean soundddieflag=false;
+bool soundddieflag=false;
 int soundddien,soundddievalue;
 
-boolean sound1upflag=false;
+bool sound1upflag=false;
 int sound1upduration=0;
 
-boolean musicplaying=false;
+bool musicplaying=false;
 int musicp=0,tuneno=0,noteduration=0,notevalue=0,musicmaxvol=0,musicattackrate=0,musicsustainlevel=0,musicdecayrate=0,musicnotewidth=0,musicreleaserate=0,musicstage=0,musicn=0;
 
 /*int bonusjingle[]={	// [321]
@@ -109,14 +113,15 @@ int dirge[]={
   0x7d00,16,0x7d00,16,0x7d00,16,0x7d00,16,0x7d00,16,0x7d00,16,0x7d00,16,
   0x7d00,16,0x7d00,16,0x7d00,16,0x7d64};
 */
-boolean soundt0flag=false;
+bool soundt0flag=false;
 
-boolean int8flag=false;
+bool int8flag=false;
 
-Sound (Digger d) {
+internal Sound (Digger d) {
 	dig = d;
 }
-void initsound () {
+
+internal void initsound () {
 //  settimer2(0x20);
 //  setspkrt2();
 //  settimer0(0);
@@ -134,10 +139,12 @@ void initsound () {
   timerrate=0x4000;
 //  timer0(0x4000);
 }
-void killsound () {
+
+internal void killsound () {
 	// added by me...
 }
-void music(int tune) {
+
+internal void music(int tune) {
   tuneno=tune;
   musicp=0;
   noteduration=0;
@@ -162,12 +169,14 @@ void music(int tune) {
 	  musicsustainlevel=25;
 	  musicdecayrate=5;
 	  musicreleaserate=1;
+	  break;
   }
   musicplaying=true;
   if (tune==2)
 	soundddieoff();
 }
-void musicoff () {
+
+internal void musicoff () {
   musicplaying=false;
   musicp=0;
 }
@@ -232,6 +241,7 @@ void musicupdate () {
 		break;
 	  }
 	  musvol-=musicreleaserate;
+	  break;
   }
   if (musvol==1)
 	t0val=0x7d00;
@@ -253,7 +263,8 @@ void setsoundmode () {
 //	setspkrt2();
   }
 }
-void setsoundt2 () {
+
+internal void setsoundt2 () {
   if (soundt0flag) {
 	spkrmode=0;
 	soundt0flag=false;
@@ -275,14 +286,17 @@ void sett0 () {
 	setsoundmode();
   }
 }
-void sett2val(int t2v) {
+
+internal void sett2val(int t2v) {
 //  if (sndflag)
 //	timer2(t2v);
 }
-void setupsound () {
+
+internal void setupsound () {
 	// added by me..
 }
-void sound1up () {
+
+internal void sound1up () {
   sound1upduration=96;
   sound1upflag=true;
 }
@@ -298,10 +312,12 @@ void sound1upupdate () {
 	  sound1upflag=false;
   }
 }
-void soundbonus () {
+
+internal void soundbonus () {
   soundbonusflag=true;
 }
-void soundbonusoff () {
+
+internal void soundbonusoff () {
   soundbonusflag=false;
   soundbonusn=0;
 }
@@ -316,7 +332,8 @@ void soundbonusupdate () {
 	  t2val=0x5e9;
   }
 }
-void soundbreak () {
+
+internal void soundbreak () {
   soundbreakduration=3;
   if (soundbreakvalue<15000)
 	soundbreakvalue=15000;
@@ -334,7 +351,8 @@ void soundbreakupdate () {
 	else
 	  soundbreakflag=false;
 }
-void soundddie () {
+
+internal void soundddie () {
   soundddien=0;
   soundddievalue=20000;
   soundddieflag=true;
@@ -356,7 +374,8 @@ void soundddieupdate () {
 	t2val=soundddievalue;
   }
 }
-void soundeatm () {
+
+internal void soundeatm () {
   soundeatmduration=20;
   soundeatmn=3;
   soundeatmvalue=2000;
@@ -385,10 +404,12 @@ void soundeatmupdate () {
 	else
 	  soundeatmflag=false;
 }
-void soundem () {
+
+internal void soundem () {
   soundemflag=true;
 }
-void soundemerald(int emocttime) {
+
+internal void soundemerald(int emocttime) {
   if (emocttime!=0) {
 	switch (emerfreq) {
 	  case 0x8e8:
@@ -415,6 +436,7 @@ void soundemerald(int emocttime) {
 		break;
 	  case 0x474:
 		emerfreq=0x8e8;
+		break;
 	}
   }
   else
@@ -449,7 +471,8 @@ void soundemupdate () {
 	soundemoff();
   }
 }
-void soundexplode () {
+
+internal void soundexplode () {
   soundexplodevalue=1500;
   soundexplodeduration=10;
   soundexplodeflag=true;
@@ -467,11 +490,13 @@ void soundexplodeupdate () {
 	else
 	  soundexplodeflag=false;
 }
-void soundfall () {
+
+internal void soundfall () {
   soundfallvalue=1000;
   soundfallflag=true;
 }
-void soundfalloff () {
+
+internal void soundfalloff () {
   soundfallflag=false;
   soundfalln=0;
 }
@@ -492,11 +517,13 @@ void soundfallupdate () {
 		soundfallf=true;
 	}
 }
-void soundfire () {
+
+internal void soundfire () {
   soundfirevalue=500;
   soundfireflag=true;
 }
-void soundfireoff () {
+
+internal void soundfireoff () {
   soundfireflag=false;
   soundfiren=0;
 }
@@ -513,7 +540,8 @@ void soundfireupdate () {
 	  soundfiren++;
   }
 }
-void soundgold () {
+
+internal void soundgold () {
   soundgoldvalue1=500;
   soundgoldvalue2=4000;
   soundgoldduration=30;
@@ -576,11 +604,12 @@ void soundint () {
 	sett2val(t2val);
   }
 }
-void soundlevdone () {
+
+internal void soundlevdone () {
 	try {
-		Thread.sleep (1000);
+		Thread.Sleep (1000);
 	}
-	catch (Exception e) {
+	catch (System.Exception e) {
 	}
 /*  int timer=0;
   soundstop();
@@ -623,13 +652,16 @@ void soundlevdoneupdate () {
 void soundoff () {
 	// phony
 }
-void soundpause () {
+
+internal void soundpause () {
   soundpausedflag=true;
 }
-void soundpauseoff () {
+
+internal void soundpauseoff () {
   soundpausedflag=false;
 }
-void soundstop () {
+
+internal void soundstop () {
   soundfalloff();
   soundwobbleoff();
   soundfireoff();
@@ -644,10 +676,12 @@ void soundstop () {
   soundddieoff();
   sound1upoff();
 }
-void soundwobble () {
+
+internal void soundwobble () {
   soundwobbleflag=true;
 }
-void soundwobbleoff () {
+
+internal void soundwobbleoff () {
   soundwobbleflag=false;
   soundwobblen=0;
 }
@@ -686,5 +720,6 @@ void stopint8 () {
   }
   sett2val(40);
 //  setspkrt2();
+}
 }
 }
