@@ -1,26 +1,32 @@
+using System.Threading;
+
+namespace DiggerClassic {
 class Main {
 
 Digger dig;
 
 
-int digsprorder[] = {14,13,7,6,5,4,3,2,1,12,11,10,9,8,15,0};	// [16]
+int[] digsprorder = {14,13,7,6,5,4,3,2,1,12,11,10,9,8,15,0};	// [16]
 
 _game[] gamedat = { new _game (), new _game () };
 
-String pldispbuf = "";
+internal string pldispbuf = "";
 
-int curplayer=0,nplayers=0,penalty=0;
-boolean levnotdrawn=false, flashplayer=false;
+int curplayer=0;
+internal int nplayers=0;
+int penalty=0;
+bool levnotdrawn=false, flashplayer=false;
 
-boolean levfflag=false;
-boolean biosflag=false;
+bool levfflag=false;
+bool biosflag=false;
 int speedmul=40;
 int delaytime=0;
 
 int randv;
 
-String leveldat[][] =		// [8][10][15]
-{{"S   B     HHHHS",
+string[][] leveldat =		// [8][10][15]
+{new [] 
+ {"S   B     HHHHS",
   "V  CC  C  V B  ",
   "VB CC  C  V    ",
   "V  CCB CB V CCC",
@@ -30,6 +36,7 @@ String leveldat[][] =		// [8][10][15]
   " HHHH     V    ",
   "C   V     V   C",
   "CC  HHHHHHH  CC"},
+ new [] 
  {"SHHHHH  B B  HS",
   " CC  V       V ",
   " CC  V CCCCC V ",
@@ -40,6 +47,7 @@ String leveldat[][] =		// [8][10][15]
   " BB  VCCCCV CC ",
   "C    V CC V CC ",
   "CC   HHHHHH    "},
+ new [] 
  {"SHHHHB B BHHHHS",
   "CC  V C C V BB ",
   "C   V C C V CC ",
@@ -50,6 +58,7 @@ String leveldat[][] =		// [8][10][15]
   " CC  C V C     ",
   "C    C V C    C",
   "CC   C H C   CC"},
+ new [] 
  {"SHBCCCCBCCCCBHS",
   "CV  CCCCCCC  VC",
   "CHHH CCCCC HHHC",
@@ -60,6 +69,7 @@ String leveldat[][] =		// [8][10][15]
   " CCC HHHHH CCC ",
   "CCCCC CVC CCCCC",
   "CCCCC CHC CCCCC"},
+ new [] 
  {"SHHHHHHHHHHHHHS",
   "VBCCCCBVCCCCCCV",
   "VCCCCCCV CCBC V",
@@ -70,6 +80,7 @@ String leveldat[][] =		// [8][10][15]
   "V CCBC VCCCCCCV",
   "VCCCCCCVCCCCCCV",
   "HHHHHHHHHHHHHHH"},
+ new [] 
  {"SHHHHHHHHHHHHHS",
   "VCBCCV V VCCBCV",
   "VCCC VBVBV CCCV",
@@ -80,6 +91,7 @@ String leveldat[][] =		// [8][10][15]
   "VCHHBCCVCCBHHCV",
   "VCVCCCCVCCCCVCV",
   "HHHHHHHHHHHHHHH"},
+ new [] 
  {"SHCCCCCVCCCCCHS",
   " VCBCBCVCBCBCV ",
   "BVCCCCCVCCCCCVB",
@@ -90,6 +102,7 @@ String leveldat[][] =		// [8][10][15]
   "CCCCHH V HHCCCC",
   "CCCCCV V VCCCCC",
   "CCCCCHHHHHCCCCC"},
+ new [] 
  {"HHHHHHHHHHHHHHS",
   "V CCBCCCCCBCC V",
   "HHHCCCCBCCCCHHH",
@@ -99,12 +112,13 @@ String leveldat[][] =		// [8][10][15]
   "VCCCHHHCHHHCCCV",
   "VCCCC V V CCCCV",
   "VCCCCCV VCCCCCV",
-  "HHHHHHHHHHHHHHH"}}; 
+  "HHHHHHHHHHHHHHH"}};
 
-Main (Digger d) {
+internal Main (Digger d) {
 	dig = d;
 }
-void addlife(int pl) {
+
+internal void addlife(int pl) {
   gamedat[pl-1].lives++;
   dig.Sound.sound1up();
 }
@@ -119,7 +133,8 @@ void checklevdone () {
   else
 	gamedat[curplayer].levdone=false;
 }
-void cleartopline () {
+
+internal void cleartopline () {
   dig.Drawing.outtext("                          ",0,0,3);
   dig.Drawing.outtext(" ",308,0,3);
 }
@@ -131,18 +146,22 @@ void drawscreen () {
   dig.initdigger();
   dig.Monster.initmonsters();
 }
-int getcplayer () {
+
+internal int getcplayer () {
   return curplayer;
 }
-int getlevch (int x,int y,int l) {
+
+internal int getlevch (int x,int y,int l) {
 	if (l==0)
 		l++;
-  return leveldat[l-1][y].charAt (x);
+  return leveldat[l-1][y][x];
 }
-int getlives(int pl) {
+
+internal int getlives(int pl) {
   return gamedat[pl-1].lives;
 }
-void incpenalty () {
+
+internal void incpenalty () {
   penalty++;
 }
 void initchars () {
@@ -160,21 +179,24 @@ void initlevel () {
 int levno () {
   return gamedat[curplayer].level;
 }
-int levof10 () {
+
+internal int levof10 () {
   if (gamedat[curplayer].level>10)
 	return 10;
   return gamedat[curplayer].level;
 }
-int levplan () {
+
+internal int levplan () {
   int l=levno();
   if (l>8)
 	l=(l&3)+5; /* Level plan: 12345678, 678, (5678) 247 times, 5 forever */
   return l;
 }
-void main () {
+
+internal void main () {
 
 	int frame,t,x = 0;
-  boolean start;
+  bool start;
 
   randv=(int)dig.Pc.gethrt();
   calibrate();
@@ -414,11 +436,13 @@ dig.newframe ();		// needed by Java version!!
 	initlevel();
   }
 }
-int randno(int n) {
+
+internal int randno(int n) {
   randv=randv*0x15a4e35+1;
   return (randv&0x7fffffff)%n;
 }
-void setdead(boolean bp6) {
+
+internal void setdead(bool bp6) {
   gamedat[curplayer].dead=bp6;
 }
 void shownplayers () {
@@ -446,9 +470,9 @@ dig.newframe ();
 	dig.Input.keypressed = 0;
 	while (true) {
 		try {
-			Thread.sleep (50);
+			Thread.Sleep (50);
 		}
-		catch (Exception e) {
+		catch (System.Exception e) {
 		}
 		if (dig.Input.keypressed!=0)
 			break;
@@ -464,5 +488,6 @@ dig.time = dig.Pc.gethrt ()-dig.frametime;
   }
   else
 	dig.Sound.soundpauseoff();
+}
 }
 }
