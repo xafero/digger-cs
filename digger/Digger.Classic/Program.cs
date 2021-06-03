@@ -10,7 +10,7 @@ namespace DiggerClassic
             Application.Init();
 
             Digger game = new Digger();
-            game.setFocusable(true);
+            game.SetFocusable(true);
             game.init();
             game.start();
 
