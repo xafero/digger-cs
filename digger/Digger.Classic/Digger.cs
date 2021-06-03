@@ -328,13 +328,9 @@ public void init () {
 	Pc.pixels = new int[65536];
 
 	for (int i=0;i<2;i++) {
-		Pc.source[i] = new MemoryImageSource (Pc.width, Pc.height, new IndexColorModel (8, 4, Pc.pal[i][0], Pc.pal[i][1], Pc.pal[i][2]), Pc.pixels, 0, Pc.width);
-		Pc.source[i].setAnimated (true);
-		Pc.image[i] = createImage (Pc.source[i]);
 		Pc.source[i].newPixels ();
 	}
 
-	Pc.currentImage = Pc.image[0];
 	Pc.currentSource = Pc.source[0];
 
 	gamethread = new Thread (this.run);
