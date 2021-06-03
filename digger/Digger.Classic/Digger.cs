@@ -1,13 +1,14 @@
+using Cairo;
+using Color = Cairo.Color;
+using Image = Gtk.Image;
+
 namespace DiggerClassic {
 /* WARNING! This code is ugly and highly non-object-oriented.
 It was ported from C almost mechanically! */
 
 using System.Threading;
-using java.applet;
-using java.awt;
-using java.awt.image;
 
-public class Digger : java.applet.Applet, Runnable {
+public class Digger : AppletCompat {
 	internal static int MAX_RATE = 200;
 	internal static int MIN_RATE = 40;
 
@@ -19,7 +20,6 @@ Thread gamethread;
 internal string subaddr;
 
 Image pic;
-Graphics picg;
 
 internal Bags Bags;
 internal Main Main;
