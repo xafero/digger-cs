@@ -5,8 +5,8 @@ class Pc {
 
 Digger dig;
 
-internal MemoryImageSource[] source = new MemoryImageSource[2];
-internal MemoryImageSource currentSource;
+internal Refresher[] source = new Refresher[2];
+internal Refresher currentSource;
 
 internal const int width = 320;
 internal const int height = 200;
