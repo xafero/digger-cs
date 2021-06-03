@@ -463,7 +463,47 @@ public void start () {
 	RequestFocus ();
 }
 
+protected override bool OnDrawn(Context cr)
+{
+	var g = Gdk.CairoHelper.Create (Window);
+	g.Scale(4, 4);
+
+	var w = Pc.width;
+	var h = Pc.height;
+	var data = Pc.pixels;
+
+	const int shift = 1;
+	
+	for (var x = 0; x < w; x++)
+	{
+		for (var y = 0; y < h; y++)
+		{
+			var arrayIndex = y * w + x;
+			var val = data[arrayIndex] * 2000;
+
+			 const int ARGBAlphaShift = 24;
+			 const int ARGBRedShift = 16;
+			 const int ARGBGreenShift = 8;
+			 const int ARGBBlueShift = 0;
+			 
+			 byte R = unchecked((byte)(val >> ARGBRedShift));
+			  byte G = unchecked((byte)(val >> ARGBGreenShift));
+			 byte B = unchecked((byte)(val >> ARGBBlueShift));
+			 byte A = unchecked((byte)(val >> ARGBAlphaShift));
+			
+			var c = new Color( R,  G,  B);
+			g.SetSourceColor(c);
+			g.Rectangle(x + shift, y + shift, 1, 1);
+			g.Fill ();
+		}
+	}
+	
+	g.GetTarget ().Dispose ();
+	g.Dispose ();
+
+	return false;
 }
+
 void updatedigger () {
   int dir,ddir,clbits,diggerox,diggeroy,nmon;
   bool push = false;
