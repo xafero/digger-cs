@@ -1,26 +1,31 @@
+namespace DiggerClassic {
 class Input {
 
 Digger dig;
-	
-boolean leftpressed=false,rightpressed=false,uppressed=false,downpressed=false,f1pressed=false,firepressed=false,minuspressed,pluspressed,f10pressed,escape=false;
 
-int keypressed=0;
+bool leftpressed=false,rightpressed=false,uppressed=false,downpressed=false,f1pressed=false;
+internal bool firepressed=false;
+bool minuspressed,pluspressed,f10pressed;
+internal bool escape=false;
 
-int akeypressed;
+internal int keypressed=0;
+
+internal int akeypressed;
 int dynamicdir=-1,staticdir=-1,joyx=0,joyy=0;
 
-boolean joybut1=false,joybut2=false;
+bool joybut1=false,joybut2=false;
 
 int keydir=0,jleftthresh=0,jupthresh=0,jrightthresh=0,jdownthresh=0,joyanax=0,joyanay=0;
-boolean firepflag=false;
+internal bool firepflag=false;
 
-boolean joyflag=false;
+bool joyflag=false;
 
 
-Input (Digger d) {
+internal Input (Digger d) {
 	dig = d;
 }
-void checkkeyb () {
+
+internal void checkkeyb () {
 	if (pluspressed) {
 		if (dig.frametime>Digger.MIN_RATE)
 			dig.frametime -= 5;
@@ -46,11 +51,13 @@ void checkkeyb () {
 	}
   } */
 }
-void detectjoy () {
+
+internal void detectjoy () {
   joyflag=false;
   staticdir=dynamicdir=-1;
 }
-int getasciikey (int make) {
+
+internal int getasciikey (int make) {
   int k;
   if ((make==' ') || ((make>='a') && (make<='z')) || ((make>='0') && (make<='9')))
   	return make;
@@ -65,7 +72,8 @@ int getasciikey (int make) {
   if (k>='a' && k<='A')
 	k+='A'-'a'; */
 }
-int getdir () {
+
+internal int getdir () {
   int bp2=keydir;
 /*  if (joyflag) {
 	bp2=-1;
@@ -82,7 +90,8 @@ int getdir () {
   } */
   return bp2;
 }
-void initkeyb () {
+
+internal void initkeyb () {
 }
 void Key_downpressed () {
   downpressed=true;
@@ -127,7 +136,8 @@ void Key_upreleased () {
   if (dynamicdir==2)
 	setdirec();
 }
-void processkey (int key) {
+
+internal void processkey (int key) {
   keypressed=key;
 	if (key>0x80)
 		akeypressed = key&0x7f;
@@ -150,7 +160,8 @@ void processkey (int key) {
 	case 0xad: minuspressed=false; break;
   }
 }
-void readdir () {
+
+internal void readdir () {
 /*  int j; */
   keydir=staticdir;
   if (dynamicdir!=-1)
@@ -188,9 +199,10 @@ void setdirec () {
   if (leftpressed) dynamicdir=staticdir=4;
   if (rightpressed) dynamicdir=staticdir=0;
 }
-boolean teststart () {
+
+internal bool teststart () {
 /*  int j; */
-  boolean startf=false;
+  bool startf=false;
 /*  if (joyflag) {
 	readjoy();
 	if (joybut1)
@@ -233,5 +245,6 @@ boolean teststart () {
 	joyanay=joyy;
   } */
   return true;
+}
 }
 }
