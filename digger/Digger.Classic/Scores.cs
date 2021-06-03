@@ -1,55 +1,63 @@
-import java.net.*;
-import java.io.*;
-import java.util.*;
+using System;
+using System.Text;
+using System.Threading;
+using java;
 
-class Scores implements Runnable {
+namespace DiggerClassic {
+	
+using java.net;
+using java.io;
+using java.util;
+
+class Scores : java.applet.Runnable {
 
 Digger dig;
-Object[][] scores;
-String substr;
+internal object[][] scores;
+string substr;
 	
-char highbuf[] = new char[10];
-long scorehigh[]={0,0,0,0,0,0,0,0,0,0,0,0};	// [12]
-String scoreinit[] = new String[11];	
+char[] highbuf = new char[10];
+long[] scorehigh={0,0,0,0,0,0,0,0,0,0,0,0};	// [12]
+string[] scoreinit = new string[11];	
 long scoret=0,score1=0,score2=0,nextbs1=0,nextbs2=0;
-String hsbuf; 
-char scorebuf[] = new char[512];
+string hsbuf; 
+char[] scorebuf = new char[512];
 int bonusscore=20000;
-boolean gotinitflag=false;
+bool gotinitflag=false;
 
-Scores (Digger d) {
+internal Scores (Digger d) {
 	dig = d;
 }
-public Object[][] _submit (String n, int s) {
+public object[][] _submit (string n, int s) {
 	if (dig.subaddr!=null) {
-		int ms = 16+(int)(System.currentTimeMillis () % (65536-16));
+		int ms = 16+(int)(SystemX.currentTimeMillis () % (65536-16));
 		substr = n+'+'+s+'+'+ms+'+'+((ms+32768)*s) % 65536;
-		new Thread (this).start ();
+		new Thread (this.run).Start ();
 	}
 	return scores;
 }
-public void _updatescores (Object[][] o) {
+public void _updatescores (object[][] o) {
 
 	if (o==null)
 		return;
 
 	try {
-		String[] in = new String[10];
+		string[] @in = new string[10];
 		int[] sc = new int[10];
 		for (int i=0;i<10;i++) {
-			in[i] = (String)o[i][0];
-			sc[i] = ((Integer)o[i][1]).intValue ();
+			@in[i] = (string)o[i][0];
+			sc[i] = ((int)o[i][1]);
 		}
 		for (int i=0;i<10;i++) {
-			scoreinit[i+1] = in[i];
+			scoreinit[i+1] = @in[i];
 			scorehigh[i+2] = sc[i];
 		}
 	}
-	catch (Exception e) {
+	catch (System.Exception e) {
 	};
 
 }
-void addscore (int score) {
+
+internal void addscore (int score) {
   if (dig.Main.getcplayer()==0) {
 	score1+=score;
 	if (score1>999999l)
@@ -83,7 +91,8 @@ void addscore (int score) {
   dig.Main.incpenalty();
   dig.Main.incpenalty();
 }
-void drawscores () {
+
+internal void drawscores () {
   writenum(score1,0,0,6,3);
   if (dig.Main.nplayers==2)
 	if (score2<100000l)
@@ -91,7 +100,8 @@ void drawscores () {
 	else
 	  writenum(score2,248,0,6,3);
 }
-void endofgame () {
+
+internal void endofgame () {
   int i,j,z;
   addscore(0);
   if (dig.Main.getcplayer()==0)
@@ -147,7 +157,7 @@ void flashywait(int n) {
 	} */
 
   try {
-	  Thread.sleep (n*2);
+	  Thread.Sleep (n*2);
   }
   catch (Exception e) {
   }
@@ -192,9 +202,9 @@ void getinitials () {
 	}
 	if (k!=0) {
 	  dig.Pc.gwrite(i*24+128,130,k,3,true);
-	  StringBuffer sb = new StringBuffer (scoreinit[0]);
-	  sb.setCharAt (i, (char)k);
-	  scoreinit[0] = sb.toString ();
+	  StringBuilder sb = new StringBuilder (scoreinit[0]);
+	  sb[i] = (char) k;
+	  scoreinit[0] = sb.ToString ();
 	}
   }
   dig.Input.keypressed=0;
@@ -207,10 +217,12 @@ void getinitials () {
 dig.newframe ();	// needed by Java version!!
   dig.Sprite.setretr(true);
 }
-void initscores () {
+
+internal void initscores () {
   addscore(0);
 }
-void loadscores () {
+
+internal void loadscores () {
   int p=1,i,x;
   //readscores();
   for (i=1;i<11;i++) {
@@ -227,11 +239,11 @@ void loadscores () {
 	  scoreinit[i] = "...";
 	}
 }
-String numtostring (long n) {
+string numtostring (long n) {
   int x;
-  String p = "";
+  string p = "";
   for (x=0;x<6;x++) {
-	p = String.valueOf (n%10) + p;
+	p = Convert.ToString( n%10) + p;
 	n/=10;
 	if (n==0) {
 	  x++;
@@ -250,10 +262,10 @@ public void run () {
 		uc.setUseCaches (false);
 		uc.connect ();
 		BufferedReader br = new BufferedReader (new InputStreamReader (uc.getInputStream ()));
-		Object[][] sc = new Object[10][2];
+		Object[][] sc = new Object[10][];
 		for (int i=0;i<10;i++) {
 		  sc[i][0] = br.readLine ();
-		  sc[i][1] = new Integer (br.readLine ());
+		  sc[i][1] = int.Parse( br.readLine ());
 		}
 		br.close ();
 		scores = sc;
@@ -262,26 +274,33 @@ public void run () {
 	}
 
 }
-void scorebonus () {
+
+internal void scorebonus () {
   addscore(1000);
 }
-void scoreeatm () {
+
+internal void scoreeatm () {
   addscore(dig.eatmsc*200);
   dig.eatmsc<<=1;
 }
-void scoreemerald () {
+
+internal void scoreemerald () {
   addscore(25);
 }
-void scoregold () {
+
+internal void scoregold () {
   addscore(500);
 }
-void scorekill () {
+
+internal void scorekill () {
   addscore(250);
 }
-void scoreoctave () {
+
+internal void scoreoctave () {
   addscore(250);
 }
-void showtable () {
+
+internal void showtable () {
   int i,col;
   dig.Drawing.outtext("HIGH SCORES",16,25,3);
   col=2;
@@ -303,7 +322,8 @@ void shufflehigh () {
   scorehigh[j+1]=scoret;
   scoreinit[j] = scoreinit[0];
 }
-void writecurscore (int bp6) {
+
+internal void writecurscore (int bp6) {
   if (dig.Main.getcplayer()==0)
 	writenum(score1,0,0,6,bp6);
   else
@@ -323,11 +343,13 @@ void writenum (long n,int x,int y,int w,int c) {
 	xp-=12;
   }
 }
-void zeroscores () {
+
+internal void zeroscores () {
   score2=0;
   score1=0;
   scoret=0;
   nextbs1=bonusscore;
   nextbs2=bonusscore;
+}
 }
 }
