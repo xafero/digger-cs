@@ -48,7 +48,7 @@ internal void gclear () {
 }
 
 internal long gethrt () {
-	return SystemX.currentTimeMillis ();
+	return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 }
 
 internal int getkips () {
