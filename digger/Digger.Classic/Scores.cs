@@ -1,14 +1,9 @@
 using System;
 using System.Text;
 using System.Threading;
-using java;
 
 namespace DiggerClassic {
-	
-using java.net;
-using java.io;
-
-class Scores : java.applet.Runnable {
+class Scores {
 
 Digger dig;
 internal object[][] scores;
@@ -28,7 +23,7 @@ internal Scores (Digger d) {
 }
 public object[][] _submit (string n, int s) {
 	if (dig.subaddr!=null) {
-		int ms = 16+(int)(SystemX.currentTimeMillis () % (65536-16));
+		int ms = 16+(int)(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() % (65536-16));
 		substr = n+'+'+s+'+'+ms+'+'+((ms+32768)*s) % 65536;
 		new Thread (this.run).Start ();
 	}
@@ -256,7 +251,7 @@ string numtostring (long n) {
 public void run () {
 
 	try {
-		URL u = new URL (dig.subaddr+'?'+substr);
+		/*URL u = new URL (dig.subaddr+'?'+substr);
 		URLConnection uc = u.openConnection ();
 		uc.setUseCaches (false);
 		uc.connect ();
@@ -267,7 +262,8 @@ public void run () {
 		  sc[i][1] = int.Parse( br.readLine ());
 		}
 		br.close ();
-		scores = sc;
+		scores = sc;*/
+		// TODO Score code ?
 	}
 	catch (Exception e) {
 	}
