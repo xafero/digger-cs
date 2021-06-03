@@ -313,10 +313,10 @@ public void init () {
 	if (gamethread!=null)
 		gamethread.Abort();
 
-  subaddr = getParameter ("submit");
+  subaddr = GetParameter ("submit");
 
 	try {
-		frametime = int.Parse (getParameter ("speed"));
+		frametime = int.Parse (GetParameter ("speed"));
 		if (frametime>MAX_RATE)
 			frametime = MAX_RATE;
 		else if (frametime<MIN_RATE)
@@ -447,10 +447,7 @@ internal void newframe () {
 	  catch (System.Exception e) {
 	  }
   }
-  Pc.currentSource.newPixels ();
-}
-public void paint (Graphics g) {
-	update (g);
+  Pc.currentSource.NewPixels ();
 }
 
 internal int reversedir (int dir) {
@@ -466,10 +463,8 @@ public void run () {
 	Main.main ();
 }
 public void start () {
-	requestFocus ();
+	RequestFocus ();
 }
-public void update (Graphics g) {
-	g.drawImage (Pc.currentImage, 0, 0, this);
 }
 void updatedigger () {
   int dir,ddir,clbits,diggerox,diggeroy,nmon;
