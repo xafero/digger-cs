@@ -281,7 +281,7 @@ internal void drawstatics () {
   dig.Pc.ginten(0);
   drawbackg(dig.Main.levplan());
   drawfield();
-  dig.Pc.currentSource.newPixels (0, 0, Pc.width, Pc.height);
+  dig.Pc.currentSource.NewPixels (0, 0, Pc.width, Pc.height);
 }
 
 internal void drawtopblob(int x,int y) {
@@ -390,7 +390,7 @@ internal void outtext (string p, int x, int y, int c, bool b) {
 	x+=12;
   }
   if (b)
-	  dig.Pc.currentSource.newPixels (rx, y, p.Length *12, 12);
+	  dig.Pc.currentSource.NewPixels (rx, y, p.Length *12, 12);
 }
 
 internal void savefield () {
