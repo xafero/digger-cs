@@ -371,7 +371,7 @@ internal void initdigger () {
   expsn=0;
   rechargetime=0;
 }
-public bool keyDown (Event e, int key) {
+protected override bool KeyDown (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0x4b);	break;
 		case 1007: Input.processkey (0x4d);	break;
@@ -386,7 +386,7 @@ public bool keyDown (Event e, int key) {
 	}
 	return true;
 }
-public bool keyUp (Event e, int key) {
+protected override bool KeyUp (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0xcb);	break;
 		case 1007: Input.processkey (0xcd);	break;
