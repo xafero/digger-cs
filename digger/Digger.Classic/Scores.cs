@@ -7,7 +7,6 @@ namespace DiggerClassic {
 	
 using java.net;
 using java.io;
-using java.util;
 
 class Scores : java.applet.Runnable {
 

@@ -11,7 +11,8 @@ public class Digger : java.applet.Applet, Runnable {
 	internal static int MAX_RATE = 200;
 	internal static int MIN_RATE = 40;
 
-int width = 320, height = 200;
+	internal int width = 320;
+	internal int height = 200;
 internal int frametime = 66;
 Thread gamethread;
 
