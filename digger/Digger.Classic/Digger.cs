@@ -1,5 +1,4 @@
 using Cairo;
-using Color = Cairo.Color;
 using Image = Gtk.Image;
 
 namespace DiggerClassic {
@@ -328,7 +327,8 @@ public void init () {
 	Pc.pixels = new int[65536];
 
 	for (int i=0;i<2;i++) {
-		Pc.source[i] = new Refresher (this);
+		var model = new ColorModel (8, 4, Pc.pal[i][0], Pc.pal[i][1], Pc.pal[i][2]);
+		Pc.source[i] = new Refresher (this, model);
 		Pc.source[i].NewPixels ();
 	}
 
