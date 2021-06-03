@@ -44,7 +44,7 @@ internal Pc (Digger d) {
 internal void gclear () {
 	for (int i=0;i<size;i++)
 		pixels[i] = 0;
-	currentSource.newPixels ();
+	currentSource.NewPixels ();
 }
 
 internal long gethrt () {
@@ -84,7 +84,7 @@ internal void ginit () {
 internal void ginten (int inten) {
 	currentSource = source[inten&1];
 	currentImage = image[inten&1];
-	currentSource.newPixels ();
+	currentSource.NewPixels ();
 }
 
 internal void gpal (int pal) {
@@ -231,7 +231,7 @@ internal void gwrite (int x, int y, int ch, int c, bool upd) {
 	}
 
 	if (upd)
-		currentSource.newPixels (x, y, 12, 12);
+		currentSource.NewPixels (x, y, 12, 12);
 	
 }
 }
