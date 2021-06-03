@@ -328,7 +328,8 @@ public void init () {
 	Pc.pixels = new int[65536];
 
 	for (int i=0;i<2;i++) {
-		Pc.source[i].newPixels ();
+		Pc.source[i] = new Refresher (this);
+		Pc.source[i].NewPixels ();
 	}
 
 	Pc.currentSource = Pc.source[0];
@@ -461,6 +462,7 @@ public void run () {
 public void start () {
 	RequestFocus ();
 }
+
 }
 void updatedigger () {
   int dir,ddir,clbits,diggerox,diggeroy,nmon;
