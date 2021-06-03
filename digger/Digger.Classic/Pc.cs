@@ -1,9 +1,6 @@
+using System;
+
 namespace DiggerClassic {
-
-using java;
-using java.awt;
-using java.awt.image;
-
 class Pc {
 
 Digger dig;
