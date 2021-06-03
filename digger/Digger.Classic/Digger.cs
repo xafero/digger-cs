@@ -479,19 +479,7 @@ protected override bool OnDrawn(Context cr)
 		for (var y = 0; y < h; y++)
 		{
 			var arrayIndex = y * w + x;
-			var val = data[arrayIndex] * 2000;
-
-			 const int ARGBAlphaShift = 24;
-			 const int ARGBRedShift = 16;
-			 const int ARGBGreenShift = 8;
-			 const int ARGBBlueShift = 0;
-			 
-			 byte R = unchecked((byte)(val >> ARGBRedShift));
-			  byte G = unchecked((byte)(val >> ARGBGreenShift));
-			 byte B = unchecked((byte)(val >> ARGBBlueShift));
-			 byte A = unchecked((byte)(val >> ARGBAlphaShift));
-			
-			var c = new Color( R,  G,  B);
+			var c = Pc.currentSource.Model.GetColor(data[arrayIndex]);
 			g.SetSourceColor(c);
 			g.Rectangle(x + shift, y + shift, 1, 1);
 			g.Fill ();
