@@ -1,36 +1,37 @@
+namespace DiggerClassic {
 class Sprite {
 
 Digger dig;
 	
-boolean retrflag=true;
+bool retrflag=true;
 
-boolean sprrdrwf[]={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};	// [17]
-boolean sprrecf[]={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};	// [17]
-boolean sprenf[]={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,};	// [16]
+bool[] sprrdrwf={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};	// [17]
+bool[] sprrecf={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};	// [17]
+bool[] sprenf={false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,};	// [16]
 
-int sprch[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
+int[] sprch={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
 
-short sprmov[][]={null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null};	// [16]
+short[][] sprmov={null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null};	// [16]
 
-int sprx[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
-int spry[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
-int sprwid[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
-int sprhei[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
-int sprbwid[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprbhei[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprnch[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprnwid[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprnhei[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprnbwid[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
-int sprnbhei[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprx={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
+int[] spry={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
+int[] sprwid={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
+int[] sprhei={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [17]
+int[] sprbwid={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprbhei={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprnch={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprnwid={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprnhei={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprnbwid={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
+int[] sprnbhei={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};	// [16]
 
-int defsprorder[]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};	// [16]
-int sprorder[] = defsprorder;
+static int[] defsprorder={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};	// [16]
+int[] sprorder = defsprorder;
 
-Sprite (Digger d) {
+internal Sprite (Digger d) {
 	dig = d;
 }
-boolean bcollide (int bx,int si) {
+bool bcollide (int bx,int si) {
   if (sprx[bx]>=sprx[si]) {
 	if (sprx[bx]+sprbwid[bx]>sprwid[si]*4+sprx[si]-sprbwid[si]-1)
 	  return false;
@@ -81,7 +82,7 @@ void clearrecf () {
   for (i=0;i<17;i++)
 	sprrecf[i]=false;
 }
-boolean collide (int bx,int si) {
+bool collide (int bx,int si) {
   if (sprx[bx]>=sprx[si]) {
 	if (sprx[bx]>sprwid[si]*4+sprx[si]-1)
 	  return false;
@@ -98,7 +99,8 @@ boolean collide (int bx,int si) {
 	return true;
   return false;
 }
-void createspr (int n,int ch,short[] mov,int wid,int hei,int bwid,int bhei) {
+
+internal void createspr (int n,int ch,short[] mov,int wid,int hei,int bwid,int bhei) {
   sprnch[n&15]=sprch[n&15]=ch;
   sprmov[n&15]=mov;
   sprnwid[n&15]=sprwid[n&15]=wid;
@@ -107,7 +109,8 @@ void createspr (int n,int ch,short[] mov,int wid,int hei,int bwid,int bhei) {
   sprnbhei[n&15]=sprbhei[n&15]=bhei;
   sprenf[n&15]=false;
 }
-void drawmiscspr (int x,int y,int ch,int wid,int hei) {
+
+internal void drawmiscspr (int x,int y,int ch,int wid,int hei) {
   sprx[16]=x&-4;
   spry[16]=y;
   sprch[16]=ch;
@@ -115,7 +118,8 @@ void drawmiscspr (int x,int y,int ch,int wid,int hei) {
   sprhei[16]=hei;
   dig.Pc.gputim(sprx[16],spry[16],sprch[16],sprwid[16],sprhei[16]);
 }
-int drawspr (int n,int x,int y) {
+
+internal int drawspr (int n,int x,int y) {
   int bx,t1,t2,t3,t4;
   bx=n&15;
   x&=-4;
@@ -148,7 +152,8 @@ int drawspr (int n,int x,int y) {
   putims();
   return bcollides(bx);
 }
-void erasespr (int n) {
+
+internal void erasespr (int n) {
   int bx=n&15;
   dig.Pc.gputi(sprx[bx],spry[bx],sprmov[bx],sprwid[bx],sprhei[bx],true);
   sprenf[bx]=false;
@@ -156,14 +161,16 @@ void erasespr (int n) {
   setrdrwflgs(bx);
   putims();
 }
-void getis () {
+
+internal void getis () {
   int i;
   for (i=0;i<16;i++)
 	if (sprrdrwf[i])
 	  dig.Pc.ggeti(sprx[i],spry[i],sprmov[i],sprwid[i],sprhei[i]);
   putims();
 }
-void initmiscspr (int x,int y,int wid,int hei) {
+
+internal void initmiscspr (int x,int y,int wid,int hei) {
   sprx[16]=x;
   spry[16]=y;
   sprwid[16]=wid;
@@ -172,14 +179,16 @@ void initmiscspr (int x,int y,int wid,int hei) {
   setrdrwflgs(16);
   putis();
 }
-void initspr (int n,int ch,int wid,int hei,int bwid,int bhei) {
+
+internal void initspr (int n,int ch,int wid,int hei,int bwid,int bhei) {
   sprnch[n&15]=ch;
   sprnwid[n&15]=wid;
   sprnhei[n&15]=hei;
   sprnbwid[n&15]=bwid;
   sprnbhei[n&15]=bhei;
 }
-int movedrawspr (int n,int x,int y) {
+
+internal int movedrawspr (int n,int x,int y) {
   int bx=n&15;
   sprx[bx]=x&-4;
   spry[bx]=y;
@@ -238,13 +247,16 @@ void setrdrwflgs (int n) {
 	  }
   }
 }
-void setretr (boolean f) {
+
+internal void setretr (bool f) {
   retrflag=f;
 }
-void setsprorder (int[] newsprorder) {
+
+internal void setsprorder (int[] newsprorder) {
   if (newsprorder==null)
 		sprorder=defsprorder;
   else
 		sprorder=newsprorder;
+}
 }
 }
