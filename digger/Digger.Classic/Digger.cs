@@ -1,42 +1,56 @@
+namespace DiggerClassic {
 /* WARNING! This code is ugly and highly non-object-oriented.
 It was ported from C almost mechanically! */
 
-import java.applet.*;
-import java.awt.*;
-import java.awt.image.*;
+using System.Threading;
+using java.applet;
+using java.awt;
+using java.awt.image;
 
-public class Digger extends java.applet.Applet implements Runnable {
+public class Digger : java.applet.Applet, Runnable {
+	internal static int MAX_RATE = 200;
+	internal static int MIN_RATE = 40;
 
-static int MAX_RATE = 200, MIN_RATE = 40;
-
-int width = 320, height = 200, frametime = 66;
+int width = 320, height = 200;
+internal int frametime = 66;
 Thread gamethread;
 
-String subaddr;
+internal string subaddr;
 
 Image pic;
 Graphics picg;
 
-Bags Bags;
-Main Main;
-Sound Sound;
-Monster Monster;
-Scores Scores;
-Sprite Sprite;
-Drawing Drawing;
-Input Input;
-Pc Pc;
+internal Bags Bags;
+internal Main Main;
+internal Sound Sound;
+internal Monster Monster;
+internal Scores Scores;
+internal Sprite Sprite;
+internal Drawing Drawing;
+internal Input Input;
+internal Pc Pc;
 
 // -----
 
-int diggerx=0,diggery=0,diggerh=0,diggerv=0,diggerrx=0,diggerry=0,digmdir=0,
-	digdir=0,digtime=0,rechargetime=0,firex=0,firey=0,firedir=0,expsn=0,
+internal int diggerx=0;
+
+internal int diggery=0;
+
+int diggerh=0,diggerv=0,diggerrx=0,diggerry=0,digmdir=0,
+	digdir=0;
+
+internal int digtime=0;
+
+int rechargetime=0,firex=0,firey=0,firedir=0,expsn=0,
 	deathstage=0,deathbag=0,deathani=0,deathtime=0,startbonustimeleft=0,
-	bonustimeleft=0,eatmsc=0,emocttime=0;
+	bonustimeleft=0;
+
+internal int eatmsc=0;
+int emocttime=0;
 
 int emmask=0;
 
-byte emfield[]={	//[150]
+byte[] emfield={	//[150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -48,11 +62,16 @@ byte emfield[]={	//[150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-boolean digonscr=false,notfiring=false,bonusvisible=false,bonusmode=false,diggervisible=false;
+internal bool digonscr=false;
+bool notfiring=false;
+internal bool bonusvisible=false;
+internal bool bonusmode=false;
+bool diggervisible=false;
 
-long time,ftime = 50;
-int embox[]={8,12,12,9,16,12,6,9};	// [8]
-int deatharc[]={3,5,6,6,5,3,0};			// [7]
+internal long time;
+internal long ftime = 50;
+int[] embox={8,12,12,9,16,12,6,9};	// [8]
+int[] deatharc={3,5,6,6,5,3,0};			// [7]
 
 public Digger () {
 	Bags = new Bags (this);
@@ -65,14 +84,16 @@ public Digger () {
 	Input = new Input (this);
 	Pc = new Pc (this);
 }
-boolean checkdiggerunderbag (int h,int v) {
+
+internal bool checkdiggerunderbag (int h,int v) {
   if (digmdir==2 || digmdir==6)
 	if ((diggerx-12)/20==h)
 	  if ((diggery-18)/18==v || (diggery-18)/18+1==v)
 		return true;
   return false;
 }
-int countem () {
+
+internal int countem () {
   int x,y,n=0;
   for (x=0;x<15;x++)
 	for (y=0;y<10;y++)
@@ -80,13 +101,14 @@ int countem () {
 		n++;
   return n;
 }
-void createbonus () {
+
+internal void createbonus () {
   bonusvisible=true;
   Drawing.drawbonus(292,18);
 }
 public void destroy () {
 	if (gamethread!=null)
-		gamethread.stop ();
+		gamethread.Abort ();
 }
 void diggerdie () {
   int clbits;
@@ -153,9 +175,11 @@ void diggerdie () {
 		deathtime--;
 	  else
 		Main.setdead(true);
+	  break;
   }
 }
-void dodigger () {
+
+internal void dodigger () {
   newframe();
   if (expsn!=0)
 	drawexplosion();
@@ -206,7 +230,8 @@ void dodigger () {
   if (emocttime>0)
 	emocttime--;
 }
-void drawemeralds () {
+
+internal void drawemeralds () {
   int x,y;
   emmask=1<<Main.getcplayer();
   for (x=0;x<15;x++)
@@ -218,6 +243,7 @@ void drawexplosion () {
   switch (expsn) {
 	case 1:
 	  Sound.soundexplode();
+	  break;
 	case 2:
 	case 3:
 	  Drawing.drawfire(firex,firey,expsn);
@@ -227,31 +253,35 @@ void drawexplosion () {
 	default:
 	  killfire();
 	  expsn=0;
+	  break;
   }
 }
 void endbonusmode () {
   bonusmode=false;
   Pc.ginten(0);
 }
-void erasebonus () {
+
+internal void erasebonus () {
   if (bonusvisible) {
 	bonusvisible=false;
 	Sprite.erasespr(14);
   }
   Pc.ginten(0);
 }
-void erasedigger () {
+
+internal void erasedigger () {
   Sprite.erasespr(0);
   diggervisible=false;
 }
-public String getAppletInfo () {
+public string getAppletInfo () {
 	return "The Digger Remastered -- http://www.digger.org, Copyright (c) Andrew Jenner & Marek Futrega / MAF";
 }
-boolean getfirepflag () {
+bool getfirepflag () {
   return Input.firepflag;
 }
-boolean hitemerald (int x,int y,int rx,int ry,int dir) {
-  boolean hit=false;
+
+internal bool hitemerald (int x,int y,int rx,int ry,int dir) {
+  bool hit=false;
   int r;
   if (dir<0 || dir>6 || ((dir&1)!=0))
 	return hit;
@@ -272,7 +302,7 @@ boolean hitemerald (int x,int y,int rx,int ry,int dir) {
 	  Drawing.eraseemerald(x*20+12,y*18+21);
 	  Main.incpenalty();
 	  hit=true;
-	  emfield[y*15+x]&=~emmask;
+	  emfield[y*15+x]&=(byte)(~emmask);
 	}
   }
   return hit;
@@ -280,18 +310,18 @@ boolean hitemerald (int x,int y,int rx,int ry,int dir) {
 public void init () {
 
 	if (gamethread!=null)
-		gamethread.stop ();
+		gamethread.Abort();
 
   subaddr = getParameter ("submit");
 
 	try {
-		frametime = Integer.parseInt (getParameter ("speed"));
+		frametime = int.Parse (getParameter ("speed"));
 		if (frametime>MAX_RATE)
 			frametime = MAX_RATE;
 		else if (frametime<MIN_RATE)
 			frametime = MIN_RATE;
 	}
-	catch (Exception e) {
+	catch (System.Exception e) {
 	}
 
 	Pc.pixels = new int[65536];
@@ -306,8 +336,8 @@ public void init () {
 	Pc.currentImage = Pc.image[0];
 	Pc.currentSource = Pc.source[0];
 
-	gamethread = new Thread (this);
-	gamethread.start ();
+	gamethread = new Thread (this.run);
+	gamethread.Start ();
 
 }
 void initbonusmode () {
@@ -318,7 +348,8 @@ void initbonusmode () {
   startbonustimeleft=20;
   eatmsc=1;
 }
-void initdigger () {
+
+internal void initdigger () {
   diggerv=9;
   digmdir=4;
   diggerh=7;
@@ -339,7 +370,7 @@ void initdigger () {
   expsn=0;
   rechargetime=0;
 }
-public boolean keyDown (Event e, int key) {
+public bool keyDown (Event e, int key) {
 	switch (key) {
 		case 1006: Input.processkey (0x4b);	break;
 		case 1007: Input.processkey (0x4d);	break;
@@ -354,7 +385,7 @@ public boolean keyDown (Event e, int key) {
 	}
 	return true;
 }
-public boolean keyUp (Event e, int key) {
+public bool keyUp (Event e, int key) {
 	switch (key) {
 		case 1006: Input.processkey (0xcb);	break;
 		case 1007: Input.processkey (0xcd);	break;
@@ -369,45 +400,50 @@ public boolean keyUp (Event e, int key) {
 	}
 	return true;
 }
-void killdigger (int stage,int bag) {
+
+internal void killdigger (int stage,int bag) {
   if (deathstage<2 || deathstage>4) {
 	digonscr=false;
 	deathstage=stage;
 	deathbag=bag;
   }
 }
-void killemerald (int x,int y) {
+
+internal void killemerald (int x,int y) {
   if ((emfield[y*15+x+15]&emmask)!=0) {
-	emfield[y*15+x+15]&=~emmask;
+	emfield[y*15+x+15]&=(byte)(~emmask);
 	Drawing.eraseemerald(x*20+12,(y+1)*18+21);
   }
 }
-void killfire () {
+
+internal void killfire () {
   if (!notfiring) {
 	notfiring=true;
 	Sprite.erasespr(15);
 	Sound.soundfireoff();
   }
 }
-void makeemfield () {
+
+internal void makeemfield () {
   int x,y;
   emmask=1<<Main.getcplayer();
   for (x=0;x<15;x++)
 	for (y=0;y<10;y++)
 	  if (Main.getlevch(x,y,Main.levplan())=='C')
-		emfield[y*15+x]|=emmask;
+		emfield[y*15+x]|=(byte)(emmask);
 	  else
-		emfield[y*15+x]&=~emmask;
+		emfield[y*15+x]&=(byte)(~emmask);
 }
-void newframe () {
+
+internal void newframe () {
 	Input.checkkeyb ();
   time += frametime;
   long l = time - Pc.gethrt ();
   if (l>0) {
 	  try {
-		  Thread.sleep ((int)l);
+		  Thread.Sleep ((int)l);
 	  }
-	  catch (Exception e) {
+	  catch (System.Exception e) {
 	  }
   }
   Pc.currentSource.newPixels ();
@@ -415,7 +451,8 @@ void newframe () {
 public void paint (Graphics g) {
 	update (g);
 }
-int reversedir (int dir) {
+
+internal int reversedir (int dir) {
   switch (dir) {
 	case 0: return 4;
 	case 4: return 0;
@@ -435,7 +472,7 @@ public void update (Graphics g) {
 }
 void updatedigger () {
   int dir,ddir,clbits,diggerox,diggeroy,nmon;
-  boolean push = false;
+  bool push = false;
   Input.readdir();
   dir=Input.getdir();
   if (dir==0 || dir==2 || dir==4 || dir==6)
@@ -540,6 +577,7 @@ void updatefire () {
 			case 6:
 			  firex=diggerx+4;
 			  firey=diggery+8;
+			  break;
 		  }
 		  firedir=digdir;
 		  Sprite.movedrawspr(15,firex,firey);
@@ -621,8 +659,10 @@ void updatefire () {
 			expsn=1;
 			firey-=7;
 			Drawing.drawfire(firex,firey,0);
-		  }
+		  } 
+		break;
 	}
   }
+}
 }
 }
