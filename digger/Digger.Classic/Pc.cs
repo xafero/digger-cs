@@ -5,9 +5,6 @@ class Pc {
 
 Digger dig;
 
-internal Image[] image = new Image[2];
-internal Image currentImage;
-
 internal MemoryImageSource[] source = new MemoryImageSource[2];
 internal MemoryImageSource currentSource;
 
@@ -83,7 +80,6 @@ internal void ginit () {
 
 internal void ginten (int inten) {
 	currentSource = source[inten&1];
-	currentImage = image[inten&1];
 	currentSource.NewPixels ();
 }
 
