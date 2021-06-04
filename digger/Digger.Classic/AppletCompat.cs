@@ -50,8 +50,10 @@ namespace DiggerClassic
                     return 1005;
                 case Key.F1:
                     return 1008;
+                default:
+                    var ascii = (int) netCode;
+                    return ascii;
             }
-            return -1;
         }
     }
 }
