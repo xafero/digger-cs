@@ -25,7 +25,7 @@ public object[][] _submit (string n, int s) {
 	if (dig.subaddr!=null) {
 		int ms = 16+(int)(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() % (65536-16));
 		substr = n+'+'+s+'+'+ms+'+'+((ms+32768)*s) % 65536;
-		new Thread (this.run).Start ();
+		// new Thread (this.run).Start ();
 	}
 	return scores;
 }
