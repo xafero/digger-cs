@@ -10,8 +10,8 @@ internal object[][] scores;
 string substr;
 	
 char[] highbuf = new char[10];
-long[] scorehigh={0,0,0,0,0,0,0,0,0,0,0,0};	// [12]
-string[] scoreinit = new string[11];	
+internal long[] scorehigh={0,0,0,0,0,0,0,0,0,0,0,0};	// [12]
+internal string[] scoreinit = new string[11];
 long scoret=0,score1=0,score2=0,nextbs1=0,nextbs2=0;
 string hsbuf; 
 char[] scorebuf = new char[512];
