@@ -11,4 +11,11 @@
     <PackageReference Include="GtkSharp" Version="3.24.24.34" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Resources/icons/*.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources/icons/*.png" />
+  </ItemGroup>
+
 </Project>

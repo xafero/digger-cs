@@ -19,6 +19,9 @@ namespace DiggerClassic
             frame.SetSize((int) (game.width * 4.03), (int) (game.height * 4.15));
             frame.SetLocationRelativeTo();
 
+            var icon = Resources.FindResource("/icons/digger.png");
+            frame.Icon = Resources.LoadImage(icon);
+
             frame.Add(game);
             frame.SetVisible(true);
 
