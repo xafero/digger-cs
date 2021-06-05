@@ -248,26 +248,10 @@ string numtostring (long n) {
 		p = ' ' + p;
 	return p;
 }
-public void run () {
 
-	try {
-		/*URL u = new URL (dig.subaddr+'?'+substr);
-		URLConnection uc = u.openConnection ();
-		uc.setUseCaches (false);
-		uc.connect ();
-		BufferedReader br = new BufferedReader (new InputStreamReader (uc.getInputStream ()));
-		Object[][] sc = new Object[10][];
-		for (int i=0;i<10;i++) {
-		  sc[i][0] = br.readLine ();
-		  sc[i][1] = int.Parse( br.readLine ());
-		}
-		br.close ();
-		scores = sc;*/
-		// TODO Score code ?
-	}
-	catch (Exception e) {
-	}
-
+public void init() {
+	if (!ScoreStorage.readFromStorage(this))
+		ScoreStorage.createInStorage(this);
 }
 
 internal void scorebonus () {
