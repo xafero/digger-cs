@@ -115,7 +115,7 @@ internal void endofgame () {
 	getinitials();
 _updatescores (_submit (scoreinit[0], (int)scoret));
 	shufflehigh();
-//	savescores();
+	ScoreStorage.writeToStorage(this);
   }
   else {
 	dig.Main.cleartopline();
