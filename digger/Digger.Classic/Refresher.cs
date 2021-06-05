@@ -15,9 +15,9 @@ namespace DiggerClassic
         public ColorModel Model { get; }
 
         public void NewPixels(int x, int y, int w, int h)
-            => _area.QueueDrawArea(x, y, w, h);
+            => Application.Invoke((o, e) => _area.QueueDrawArea(x, y, w, h));
 
         public void NewPixels()
-            => _area.QueueDraw();
+            => Application.Invoke((o, e) => _area.QueueDraw());
     }
 }
