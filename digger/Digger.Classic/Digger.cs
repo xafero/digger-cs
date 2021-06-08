@@ -406,15 +406,15 @@ internal void killfire () {
   }
 }
 
-internal void makeemfield () {
-  int x,y;
-  emmask=1<<Main.getcplayer();
-  for (x=0;x<15;x++)
-	for (y=0;y<10;y++)
-	  if (Main.getlevch(x,y,Main.levplan())=='C')
-		emfield[y*15+x]|=(byte)(emmask);
-	  else
-		emfield[y*15+x]&=(byte)(~emmask);
+internal void makeemfield() {
+	int x, y;
+	emmask=1<< Main.getcplayer();
+	for (x = 0; x < 15; x++)
+	for (y = 0; y < 10; y++)
+		if (Main.getlevch(x, y, Main.levplan()) == 'C')
+			emfield[y*15+x] = (byte) (emfield[y*15+x]|emmask);
+		else
+			emfield[y*15+x] = (byte) (emfield[y*15+x]&~emmask);
 }
 
 internal void newframe () {
