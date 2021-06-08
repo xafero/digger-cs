@@ -8,9 +8,8 @@ Digger dig;
 internal Refresher[] source = new Refresher[2];
 internal Refresher currentSource;
 
-internal const int width = 320;
-internal const int height = 200;
-int size = width * height;
+internal const int width = 320, height = 200;
+internal int size = width * height;
 
 internal int[] pixels;
 
