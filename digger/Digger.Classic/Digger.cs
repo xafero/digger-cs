@@ -286,7 +286,7 @@ internal bool hitemerald (int x,int y,int rx,int ry,int dir) {
 	  Drawing.eraseemerald(x*20+12,y*18+21);
 	  Main.incpenalty();
 	  hit=true;
-	  emfield[y*15+x]&=(byte)(~emmask);
+	  emfield[y*15+x] = (byte) (emfield[y*15+x]&~emmask);
 	}
   }
   return hit;
@@ -393,7 +393,7 @@ internal void killdigger (int stage,int bag) {
 
 internal void killemerald (int x,int y) {
   if ((emfield[y*15+x+15]&emmask)!=0) {
-	emfield[y*15+x+15]&=(byte)(~emmask);
+	emfield[y*15+x+15] = (byte) (emfield[y*15+x+15]&~emmask);
 	Drawing.eraseemerald(x*20+12,(y+1)*18+21);
   }
 }
