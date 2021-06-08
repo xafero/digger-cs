@@ -226,7 +226,7 @@ internal void gwrite (int x, int y, int ch, int c, bool upd) {
 	}
 
 	if (upd)
-		currentSource.NewPixels (x, y, 12, 12);
+		currentSource.NewPixels ( /* x, y, 12, 12 */ ); // Force complete update for high score
 	
 }
 }
