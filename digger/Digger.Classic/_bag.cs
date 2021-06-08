@@ -1,20 +1,8 @@
 namespace DiggerClassic {
 class _bag {
-	internal int x;
-	internal int y;
-	internal int h;
-	internal int v;
-	internal int xr;
-	internal int yr;
-	internal int dir;
-	internal int wt;
-	internal int gt;
-	internal int fallh;
-	internal bool wobbling;
-	internal bool unfallen;
-	internal bool exist;
-
-	internal void copyFrom (_bag t) {
+  internal int x,y,h,v,xr,yr,dir,wt,gt,fallh;
+  internal bool wobbling,unfallen,exist;
+internal void copyFrom (_bag t) {
  	x = t.x;
 	y = t.y;
 	h = t.h;
