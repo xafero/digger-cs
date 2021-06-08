@@ -15,8 +15,7 @@ internal int volume=0;
 
 int timerclock=0;		// sint3
 
-bool soundflag=true;
-internal bool musicflag=true;
+internal bool soundflag=true,musicflag=true;
 
 bool sndflag=false,soundpausedflag=false;
 
