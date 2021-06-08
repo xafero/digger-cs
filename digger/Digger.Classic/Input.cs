@@ -2,11 +2,8 @@ namespace DiggerClassic {
 class Input {
 
 Digger dig;
-
-bool leftpressed=false,rightpressed=false,uppressed=false,downpressed=false,f1pressed=false;
-internal bool firepressed=false;
-bool minuspressed,pluspressed,f10pressed;
-internal bool escape=false;
+	
+internal bool leftpressed=false,rightpressed=false,uppressed=false,downpressed=false,f1pressed=false,firepressed=false,minuspressed,pluspressed,f10pressed,escape=false;
 
 internal int keypressed=0;
 
