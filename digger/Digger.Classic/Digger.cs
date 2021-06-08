@@ -227,7 +227,7 @@ void drawexplosion () {
   switch (expsn) {
 	case 1:
 	  Sound.soundexplode();
-	  break;
+	  goto case 2;
 	case 2:
 	case 3:
 	  Drawing.drawfire(firex,firey,expsn);
