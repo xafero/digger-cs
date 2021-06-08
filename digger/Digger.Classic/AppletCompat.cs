@@ -50,6 +50,12 @@ namespace DiggerClassic
                     return 1005;
                 case Key.F1:
                     return 1008;
+                case Key.F10:
+                    return 1021;
+                case Key.plus:
+                    return 1031;
+                case Key.minus:
+                    return 1032;
                 default:
                     var ascii = (int) netCode;
                     return ascii;
