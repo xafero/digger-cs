@@ -12,9 +12,7 @@ _game[] gamedat = { new _game (), new _game () };
 
 internal string pldispbuf = "";
 
-int curplayer=0;
-internal int nplayers=0;
-int penalty=0;
+internal int curplayer=0,nplayers=0,penalty=0;
 bool levnotdrawn=false, flashplayer=false;
 
 bool levfflag=false;
