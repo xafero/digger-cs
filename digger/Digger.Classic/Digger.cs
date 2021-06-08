@@ -8,12 +8,9 @@ It was ported from C almost mechanically! */
 using System.Threading;
 
 public class Digger : AppletCompat {
-	internal static int MAX_RATE = 200;
-	internal static int MIN_RATE = 40;
+internal static int MAX_RATE = 200, MIN_RATE = 40;
 
-	internal int width = 320;
-	internal int height = 200;
-internal int frametime = 66;
+internal int width = 320, height = 200, frametime = 66;
 Thread gamethread;
 
 internal string subaddr;
@@ -32,21 +29,11 @@ internal Pc Pc;
 
 // -----
 
-internal int diggerx=0;
-
-internal int diggery=0;
-
-int diggerh=0,diggerv=0,diggerrx=0,diggerry=0,digmdir=0,
-	digdir=0;
-
-internal int digtime=0;
-
-int rechargetime=0,firex=0,firey=0,firedir=0,expsn=0,
+internal
+int diggerx=0,diggery=0,diggerh=0,diggerv=0,diggerrx=0,diggerry=0,digmdir=0,
+	digdir=0,digtime=0,rechargetime=0,firex=0,firey=0,firedir=0,expsn=0,
 	deathstage=0,deathbag=0,deathani=0,deathtime=0,startbonustimeleft=0,
-	bonustimeleft=0;
-
-internal int eatmsc=0;
-int emocttime=0;
+	bonustimeleft=0,eatmsc=0,emocttime=0;
 
 int emmask=0;
 
@@ -62,14 +49,11 @@ byte[] emfield={	//[150]
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-internal bool digonscr=false;
-bool notfiring=false;
-internal bool bonusvisible=false;
-internal bool bonusmode=false;
-bool diggervisible=false;
+internal
+bool digonscr=false,notfiring=false,bonusvisible=false,bonusmode=false,diggervisible=false;
 
-internal long time;
-internal long ftime = 50;
+internal
+long time,ftime = 50;
 int[] embox={8,12,12,9,16,12,6,9};	// [8]
 int[] deatharc={3,5,6,6,5,3,0};			// [7]
 
