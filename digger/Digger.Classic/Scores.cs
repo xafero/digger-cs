@@ -6,7 +6,7 @@ namespace DiggerClassic {
 class Scores {
 
 Digger dig;
-internal object[][] scores;
+internal ScoreTuple[] scores;
 string substr;
 	
 char[] highbuf = new char[10];
@@ -21,7 +21,7 @@ bool gotinitflag=false;
 internal Scores (Digger d) {
 	dig = d;
 }
-public object[][] _submit (string n, int s) {
+public ScoreTuple[] _submit (string n, int s) {
 	if (dig.subaddr!=null) {
 		int ms = 16+(int)(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() % (65536-16));
 		substr = n+'+'+s+'+'+ms+'+'+((ms+32768)*s) % 65536;
@@ -29,7 +29,7 @@ public object[][] _submit (string n, int s) {
 	}
 	return scores;
 }
-public void _updatescores (object[][] o) {
+public void _updatescores (ScoreTuple[] o) {
 
 	if (o==null)
 		return;
@@ -38,8 +38,8 @@ public void _updatescores (object[][] o) {
 		string[] @in = new string[10];
 		int[] sc = new int[10];
 		for (int i=0;i<10;i++) {
-			@in[i] = (string)o[i][0];
-			sc[i] = ((int)o[i][1]);
+			@in[i] = o[i].Item1;
+			sc[i] = o[i].Item2;
 		}
 		for (int i=0;i<10;i++) {
 			scoreinit[i+1] = @in[i];

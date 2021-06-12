@@ -56,12 +56,12 @@ namespace DiggerClassic
                 if (!File.Exists(scoFile))
                     return false;
                 var br = new StreamReader(scoFile);
-                var sc = new object[10][];
+                var sc = new ScoreTuple[10];
                 for (var i = 0; i < 10; i++)
                 {
-                    sc[i] = new object[2];
-                    sc[i][0] = br.ReadLine();
-                    sc[i][1] = int.Parse(br.ReadLine());
+                    var name = br.ReadLine();
+                    var score = int.Parse(br.ReadLine());
+                    sc[i] = new ScoreTuple(name, score);
                 }
                 br.Dispose();
                 mem.scores = sc;
