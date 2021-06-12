@@ -27,9 +27,9 @@ namespace DiggerClassic
                 var scorehigh = mem.scorehigh;
                 for (var i = 0; i < 10; i++)
                 {
-                    bw.Write(scoreinit[i]);
+                    bw.Write(scoreinit[i + 1]);
                     bw.WriteLine();
-                    bw.Write(Convert.ToString(scorehigh[i]));
+                    bw.Write(Convert.ToString(scorehigh[i + 2]));
                     bw.WriteLine();
                 }
                 bw.Flush();
