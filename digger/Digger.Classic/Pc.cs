@@ -1,12 +1,13 @@
 using System;
+using Digger.API;
 
 namespace DiggerClassic {
 class Pc {
 
 Digger dig;
 
-internal Refresher[] source = new Refresher[2];
-internal Refresher currentSource;
+internal IRefresher[] source = new IRefresher[2];
+internal IRefresher currentSource;
 
 internal const int width = 320, height = 200;
 internal int size = width * height;
@@ -229,5 +230,11 @@ internal void gwrite (int x, int y, int ch, int c, bool upd) {
 		currentSource.NewPixels ( /* x, y, 12, 12 */ ); // Force complete update for high score
 	
 }
+
+public int GetWidth() => width;
+public int GetHeight() => height;
+public int[] GetPixels() => pixels;
+public IRefresher GetCurrentSource() => currentSource;
+
 }
 }
