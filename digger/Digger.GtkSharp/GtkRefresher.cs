@@ -1,18 +1,19 @@
+using Digger.API;
 using Gtk;
 
-namespace DiggerClassic
+namespace Digger.GtkSharp
 {
-    public class Refresher
+    public class GtkRefresher : IRefresher
     {
         private readonly DrawingArea _area;
 
-        public Refresher(DrawingArea area, ColorModel model)
+        public GtkRefresher(DrawingArea area, IColorModel model)
         {
             _area = area;
             Model = model;
         }
 
-        public ColorModel Model { get; }
+        public IColorModel Model { get; }
 
         public void NewPixels(int x, int y, int w, int h)
             => Application.Invoke((o, e) => _area.QueueDrawArea(x, y, w, h));

@@ -2,15 +2,17 @@ using Gdk;
 using Gtk;
 using Key = Gdk.Key;
 
-namespace DiggerClassic
+namespace Digger.GtkSharp
 {
-    public abstract class AppletCompat : DrawingArea
+    internal abstract class AppletCompat : DrawingArea
     {
         public void SetFocusable(bool value) => CanFocus = value;
 
-        protected static string GetParameter(string key) => null;
+        public string GetSubmitParameter() => null;
 
-        protected void RequestFocus() => GrabFocus();
+        public int GetSpeedParameter() => 66;
+
+        public void RequestFocus() => GrabFocus();
 
         protected override bool OnKeyPressEvent(EventKey e)
         {

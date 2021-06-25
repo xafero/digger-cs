@@ -1,8 +1,8 @@
-using Cairo;
+using Digger.API;
 
 namespace DiggerClassic
 {
-    public class ColorModel
+    public class ColorModel : IColorModel
     {
         private readonly int _bits;
         private readonly int _size;
@@ -27,12 +27,12 @@ namespace DiggerClassic
             _b = b;
         }
 
-        public Color GetColor(int index)
+        public (int, int, int) GetColor(int index)
         {
             var r = _r[index];
             var g = _g[index];
             var b = _b[index];
-            return new Color(r, g, b);
+            return (r, g, b);
         }
     }
 }

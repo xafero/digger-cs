@@ -1,5 +1,4 @@
 using System.IO;
-using Gdk;
 
 namespace DiggerClassic
 {
@@ -14,7 +13,5 @@ namespace DiggerClassic
             var resource = dll.GetManifestResourceStream(fullName);
             return resource;
         }
-
-        public static Pixbuf LoadImage(Stream stream) => new Pixbuf(stream);
     }
 }

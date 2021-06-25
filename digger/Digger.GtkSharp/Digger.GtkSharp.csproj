@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GtkSharp" Version="3.24.24.34" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Digger.Classic\Digger.Classic.csproj" />
+  </ItemGroup>
+
+</Project>

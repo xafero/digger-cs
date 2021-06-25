@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     
     <RootNamespace>DiggerClassic</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GtkSharp" Version="3.24.24.34" />
+    <ProjectReference Include="..\Digger.API\Digger.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +15,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources/icons/*.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Digger.GtkSharp</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Digger.WinForms</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
 </Project>
