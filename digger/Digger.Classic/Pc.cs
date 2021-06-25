@@ -2,7 +2,7 @@ using System;
 using Digger.API;
 
 namespace DiggerClassic {
-class Pc {
+class Pc : IPc {
 
 Digger dig;
 
