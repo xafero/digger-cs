@@ -1,5 +1,4 @@
-using Cairo;
-using Image = Gtk.Image;
+using Digger.API;
 
 namespace DiggerClassic {
 /* WARNING! This code is ugly and highly non-object-oriented.
@@ -7,15 +6,15 @@ It was ported from C almost mechanically! */
 
 using System.Threading;
 
-public class Digger : AppletCompat {
+public class Digger : IDigger {
 internal static int MAX_RATE = 200, MIN_RATE = 40;
 
-internal int width = 320, height = 200, frametime = 66;
+public int width = 320, height = 200, frametime = 66;
 Thread gamethread;
 
 internal string subaddr;
 
-Image pic;
+private readonly IFactory _factory;
 
 internal Bags Bags;
 internal Main Main;
@@ -57,7 +56,8 @@ long time,ftime = 50;
 int[] embox={8,12,12,9,16,12,6,9};	// [8]
 int[] deatharc={3,5,6,6,5,3,0};			// [7]
 
-public Digger () {
+public Digger (IFactory factory) {
+	_factory = factory;
 	Bags = new Bags (this);
 	Main = new Main (this);
 	Sound = new Sound (this);
@@ -291,15 +291,15 @@ internal bool hitemerald (int x,int y,int rx,int ry,int dir) {
   }
   return hit;
 }
-public void init () {
+public void Init () {
 
 	if (gamethread!=null)
 		gamethread.Abort();
 
-  subaddr = GetParameter ("submit");
+  subaddr = _factory.GetSubmitParameter();
 
 	try {
-		frametime = int.Parse (GetParameter ("speed"));
+		frametime = _factory.GetSpeedParameter();
 		if (frametime>MAX_RATE)
 			frametime = MAX_RATE;
 		else if (frametime<MIN_RATE)
@@ -312,7 +312,7 @@ public void init () {
 
 	for (int i=0;i<2;i++) {
 		var model = new ColorModel (8, 4, Pc.pal[i][0], Pc.pal[i][1], Pc.pal[i][2]);
-		Pc.source[i] = new Refresher (this, model);
+		Pc.source[i] = _factory.CreateRefresher (this, model);
 		Pc.source[i].NewPixels ();
 	}
 
@@ -352,7 +352,10 @@ internal void initdigger () {
   expsn=0;
   rechargetime=0;
 }
-protected override bool KeyDown (int key) {
+
+public IPc GetPc() => Pc;
+
+public bool KeyDown (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0x4b);	break;
 		case 1007: Input.processkey (0x4d);	break;
@@ -370,7 +373,7 @@ protected override bool KeyDown (int key) {
 	}
 	return true;
 }
-protected override bool KeyUp (int key) {
+public bool KeyUp (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0xcb);	break;
 		case 1007: Input.processkey (0xcd);	break;
@@ -449,37 +452,8 @@ internal int reversedir (int dir) {
 public void run () {
 	Main.main ();
 }
-public void start () {
-	RequestFocus ();
-}
-
-protected override bool OnDrawn(Context cr)
-{
-	var g = Gdk.CairoHelper.Create (Window);
-	g.Scale(4, 4);
-
-	var w = Pc.width;
-	var h = Pc.height;
-	var data = Pc.pixels;
-
-	const int shift = 1;
-	
-	for (var x = 0; x < w; x++)
-	{
-		for (var y = 0; y < h; y++)
-		{
-			var arrayIndex = y * w + x;
-			var c = Pc.currentSource.Model.GetColor(data[arrayIndex]);
-			g.SetSourceColor(c);
-			g.Rectangle(x + shift, y + shift, 1, 1);
-			g.Fill ();
-		}
-	}
-	
-	g.GetTarget ().Dispose ();
-	g.Dispose ();
-
-	return false;
+public void Start () {
+	_factory.RequestFocus ();
 }
 
 void updatedigger () {
