@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.UWP", "Digger.UWP\Digger.UWP.csproj", "{0168E927-9BD9-4C0E-91A9-542F03975025}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.API", "..\Digger.API\Digger.API.csproj", "{5253EA45-682F-4C5D-8D8A-9460B6A0B563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.API", "Digger.API\Digger.API.csproj", "{5253EA45-682F-4C5D-8D8A-9460B6A0B563}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Classic", "..\Digger.Classic\Digger.Classic.csproj", "{3B5D28E0-8E23-44C9-93AD-07C7C2F4CC8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Classic", "Digger.Classic\Digger.Classic.csproj", "{3B5D28E0-8E23-44C9-93AD-07C7C2F4CC8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
