@@ -1,5 +1,5 @@
 # digger-cs
-Digger Remastered (.NET / C#)
+Digger Remastered (C# / .NET)
 
 ## Screenshots
 ![Screenshot1](/wiki/screenshot1.png?raw=true)
