@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.Android", "Digger.An
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Xamarin", "Digger.Xamarin\Digger.Xamarin.csproj", "{C4A19463-71C3-4314-8DC6-2B564AD6B703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.Classic", "Digger.Classic\Digger.Classic.csproj", "{5F17BC58-99BE-4763-A65B-E44703C590F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Classic", "Digger.Classic\Digger.Classic.csproj", "{5F17BC58-99BE-4763-A65B-E44703C590F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.API", "Digger.API\Digger.API.csproj", "{74F38DB2-E55A-4DB4-AC0F-5481CB388FC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.API", "Digger.API\Digger.API.csproj", "{74F38DB2-E55A-4DB4-AC0F-5481CB388FC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E2BD6CEF-6B44-44DC-B2E3-9C494AAE479B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,5 +40,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F17BC58-99BE-4763-A65B-E44703C590F7} = {E2BD6CEF-6B44-44DC-B2E3-9C494AAE479B}
+		{74F38DB2-E55A-4DB4-AC0F-5481CB388FC8} = {E2BD6CEF-6B44-44DC-B2E3-9C494AAE479B}
 	EndGlobalSection
 EndGlobal
