@@ -11,7 +11,7 @@
 			<Setter Property="CornerRadius" Value="35" />
 		</Style>
 		<Style x:Key="OptionBtn" TargetType="Button">
-			<Setter Property="FontSize" Value="38" />
+			<Setter Property="FontSize" Value="27" />
 			<Setter Property="Margin" Value="15" />
 			<Setter Property="FontAttributes" Value="Bold" />
 		</Style>
@@ -43,11 +43,11 @@
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-			<Button Grid.Row="0" Grid.Column="1" Text="&#x25B2;" Style="{StaticResource ControlBtn}" Clicked="UpButton_Clicked" />
-			<Button Grid.Row="1" Grid.Column="0" Text="&#x25C0;" Style="{StaticResource ControlBtn}" Clicked="LeftButton_Clicked" />
+            <Button Grid.Row="0" Grid.Column="1" Text="&#x25B3;" Style="{StaticResource ControlBtn}" Clicked="UpButton_Clicked" />
+            <Button Grid.Row="1" Grid.Column="0" Text="&#x25C1;" Style="{StaticResource ControlBtn}" Clicked="LeftButton_Clicked" />
 			<Button Grid.Row="1" Grid.Column="1" Text="&#x25C6;" Style="{StaticResource ControlBtn}" Clicked="FireButton_Clicked" BackgroundColor="DarkGray" />
-			<Button Grid.Row="1" Grid.Column="2" Text="&#x25B6;" Style="{StaticResource ControlBtn}" Clicked="RightButton_Clicked" />
-			<Button Grid.Row="2" Grid.Column="1" Text="&#x25BC;" Style="{StaticResource ControlBtn}" Clicked="DownButton_Clicked" />
+            <Button Grid.Row="1" Grid.Column="2" Text="&#x25B7;" Style="{StaticResource ControlBtn}" Clicked="RightButton_Clicked" />
+            <Button Grid.Row="2" Grid.Column="1" Text="&#x25BD;" Style="{StaticResource ControlBtn}" Clicked="DownButton_Clicked" />
 			<Button Grid.Row="0" Grid.Column="0" Text="&#x2717;" Style="{StaticResource OptionBtn}" Clicked="StopButton_Clicked" />
 			<Button Grid.Row="0" Grid.Column="2" Text="&#x270D;" Style="{StaticResource OptionBtn}" Clicked="InputButton_Clicked" />
 		</Grid>
@@ -64,8 +64,8 @@
 			</Grid.ColumnDefinitions>
 			<Button Grid.Row="0" Grid.Column="0" Text="&#x2717;" Style="{StaticResource OptionBtn}" Clicked="StopButton_Clicked" />
 			<Button Grid.Row="1" Grid.Column="0" Text="&#x25C6;" Style="{StaticResource ControlBtn}" Clicked="FireButton_Clicked" BackgroundColor="DarkGray" />
-			<Button Grid.Row="2" Grid.Column="0" Text="&#x25B2;" Style="{StaticResource ControlBtn}" Clicked="UpButton_Clicked" />
-			<Button Grid.Row="3" Grid.Column="0" Text="&#x25C0;" Style="{StaticResource ControlBtn}" Clicked="LeftButton_Clicked" />
+            <Button Grid.Row="2" Grid.Column="0" Text="&#x25B3;" Style="{StaticResource ControlBtn}" Clicked="UpButton_Clicked" />
+            <Button Grid.Row="3" Grid.Column="0" Text="&#x25C1;" Style="{StaticResource ControlBtn}" Clicked="LeftButton_Clicked" />
 		</Grid>
 
 		<Grid Grid.Row="0" Grid.Column="2" ColumnSpacing="2" RowSpacing="2" x:Name="rightButtons">
@@ -80,8 +80,8 @@
 			</Grid.ColumnDefinitions>
 			<Button Grid.Row="0" Grid.Column="0" Text="&#x270D;" Style="{StaticResource OptionBtn}" Clicked="InputButton_Clicked" />
 			<Button Grid.Row="1" Grid.Column="0" Text="&#x25C6;" Style="{StaticResource ControlBtn}" Clicked="FireButton_Clicked" BackgroundColor="DarkGray" />
-			<Button Grid.Row="2" Grid.Column="0" Text="&#x25B6;" Style="{StaticResource ControlBtn}" Clicked="RightButton_Clicked" />
-			<Button Grid.Row="3" Grid.Column="0" Text="&#x25BC;" Style="{StaticResource ControlBtn}" Clicked="DownButton_Clicked" />
+            <Button Grid.Row="2" Grid.Column="0" Text="&#x25B7;" Style="{StaticResource ControlBtn}" Clicked="RightButton_Clicked" />
+            <Button Grid.Row="3" Grid.Column="0" Text="&#x25BD;" Style="{StaticResource ControlBtn}" Clicked="DownButton_Clicked" />
 		</Grid>
 	</Grid>
 
