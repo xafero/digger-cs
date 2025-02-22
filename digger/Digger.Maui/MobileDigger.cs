@@ -1,6 +1,4 @@
-﻿using System;
-using Digger.API;
-using DiggerClassic;
+﻿using Digger.API;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 

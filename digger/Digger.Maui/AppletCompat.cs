@@ -1,5 +1,4 @@
-﻿using SkiaSharp.Views.Maui;
-using SkiaSharp.Views.Maui.Controls;
+﻿using SkiaSharp.Views.Maui.Controls;
 
 namespace Digger.Xamarin
 {

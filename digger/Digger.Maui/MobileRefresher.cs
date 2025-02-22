@@ -20,7 +20,7 @@ namespace Digger.Xamarin
 		{
 			void Refresh()
 			{
-				_area.InvalidateSurface();
+				_area?.InvalidateSurface();
 			}
 
 			if (_area.Dispatcher.IsDispatchRequired)
