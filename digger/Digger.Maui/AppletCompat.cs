@@ -1,6 +1,6 @@
 ﻿using SkiaSharp.Views.Maui.Controls;
 
-namespace Digger.Xamarin
+namespace Digger.Maui
 {
 	internal abstract class AppletCompat : SKCanvasView
 	{

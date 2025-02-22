@@ -2,7 +2,7 @@
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 
-namespace Digger.Xamarin
+namespace Digger.Maui
 {
 	internal class MobileDigger : AppletCompat, IFactory
 	{

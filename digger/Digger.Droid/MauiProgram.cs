@@ -1,6 +1,6 @@
 ﻿using SkiaSharp.Views.Maui.Controls.Hosting;
 
-namespace Digger.Maui.Droid
+namespace Digger.Maui
 {
     public static class MauiProgram
     {

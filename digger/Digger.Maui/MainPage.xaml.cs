@@ -1,6 +1,4 @@
-﻿using Digger.Xamarin;
-
-namespace Digger.Maui
+﻿namespace Digger.Maui
 {
     public partial class MainPage : ContentPage
     {

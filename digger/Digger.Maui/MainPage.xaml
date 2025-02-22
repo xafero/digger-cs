@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:y="clr-namespace:Digger.Xamarin"
+             xmlns:maui="clr-namespace:Digger.Maui"
              x:Class="Digger.Maui.MainPage">
 
     <ContentPage.Resources>
@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
 
             <Frame Grid.Row="0" Grid.Column="1" Padding="10" CornerRadius="0" BackgroundColor="Black" x:Name="diggerFrame">
-                <y:MobileDigger x:Name="myCanvas" />
+                <maui:MobileDigger x:Name="myCanvas" />
             </Frame>
 
             <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="2" RowSpacing="2" x:Name="allButtons">

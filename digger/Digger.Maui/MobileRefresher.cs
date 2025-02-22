@@ -1,6 +1,6 @@
 ﻿using Digger.API;
 
-namespace Digger.Xamarin
+namespace Digger.Maui
 {
 	internal class MobileRefresher : IRefresher
 	{

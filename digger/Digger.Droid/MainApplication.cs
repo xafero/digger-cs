@@ -1,7 +1,7 @@
 using Android.App;
 using Android.Runtime;
 
-namespace Digger.Maui.Droid
+namespace Digger.Maui
 {
     [Application]
     public class MainApplication : MauiApplication
