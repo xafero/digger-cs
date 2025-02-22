@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.API", "Digger.API\Digger.API.csproj", "{CF2E0565-8B8A-4819-A8B0-C1C709927C72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.Classic", "Digger.Classic\Digger.Classic.csproj", "{2FF51E2C-F546-4B67-8086-BD26EC697326}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{436D951A-1221-46A6-A8D1-F847681326DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF2E0565-8B8A-4819-A8B0-C1C709927C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF2E0565-8B8A-4819-A8B0-C1C709927C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF2E0565-8B8A-4819-A8B0-C1C709927C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF2E0565-8B8A-4819-A8B0-C1C709927C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF51E2C-F546-4B67-8086-BD26EC697326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF51E2C-F546-4B67-8086-BD26EC697326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF51E2C-F546-4B67-8086-BD26EC697326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF51E2C-F546-4B67-8086-BD26EC697326}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF2E0565-8B8A-4819-A8B0-C1C709927C72} = {436D951A-1221-46A6-A8D1-F847681326DC}
+		{2FF51E2C-F546-4B67-8086-BD26EC697326} = {436D951A-1221-46A6-A8D1-F847681326DC}
+	EndGlobalSection
+EndGlobal
