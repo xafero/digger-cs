@@ -2,23 +2,43 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
 	public MainPage()
 	{
 		InitializeComponent();
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+    private void FireButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    private void StopButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    private void InputButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void UpButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void LeftButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void RightButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void DownButton_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }
-

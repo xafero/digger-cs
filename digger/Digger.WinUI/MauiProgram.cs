@@ -1,4 +1,6 @@
-﻿namespace Digger.Maui.WinUI
+﻿using SkiaSharp.Views.Maui.Controls.Hosting;
+
+namespace Digger.Maui.WinUI
 {
     public static class MauiProgram
     {
@@ -7,7 +9,8 @@
             var builder = MauiApp.CreateBuilder();
 
             builder
-                .UseSharedMauiApp();
+                .UseSharedMauiApp()
+                .UseSkiaSharp();
 
             return builder.Build();
         }

@@ -1,4 +1,6 @@
-﻿namespace Digger.Maui.Droid
+﻿using SkiaSharp.Views.Maui.Controls.Hosting;
+
+namespace Digger.Maui.Droid
 {
     public static class MauiProgram
     {
@@ -7,7 +9,9 @@
             var builder = MauiApp.CreateBuilder();
 
             builder
-                .UseSharedMauiApp();
+                .UseSharedMauiApp()
+                .UseSkiaSharp();
+
 
             return builder.Build();
         }
