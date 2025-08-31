@@ -12,7 +12,7 @@
 	/>
 
 	<application 
-		android:label="Digger.Android" 
+		android:label="Digger Android" 
 		android:icon="@mipmap/appicon" 
 		android:roundIcon="@mipmap/appicon_round">
 	</application>
