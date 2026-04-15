@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Digger.ViewModels;
-
-public abstract class ViewModelBase : ObservableObject
+namespace Digger.ViewModels
 {
+    public abstract class ViewModelBase : ObservableObject
+    {
+    }
 }

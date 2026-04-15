@@ -1,11 +1,12 @@
 using Avalonia.Controls;
 
-namespace Digger.Views;
-
-public partial class MainWindow : Window
+namespace Digger.Views
 {
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }

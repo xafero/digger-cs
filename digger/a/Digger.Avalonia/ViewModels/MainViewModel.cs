@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Digger.ViewModels;
-
-public partial class MainViewModel : ViewModelBase
+namespace Digger.ViewModels
 {
-    [ObservableProperty]
-    private string _greeting = "Welcome to Avalonia!";
+    public partial class MainViewModel : ViewModelBase
+    {
+        [ObservableProperty]
+        private string _greeting = "Welcome to Avalonia!";
+    }
 }

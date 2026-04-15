@@ -3,14 +3,15 @@ using Android.Content.PM;
 using Avalonia;
 using Avalonia.Android;
 
-namespace Digger.Android;
-
-[Activity(
-    Label = "Digger.Android",
-    Theme = "@style/MyTheme.NoActionBar",
-    Icon = "@drawable/icon",
-    MainLauncher = true,
-    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode)]
-public class MainActivity : AvaloniaMainActivity
+namespace Digger.Android
 {
+    [Activity(
+        Label = "Digger.Android",
+        Theme = "@style/MyTheme.NoActionBar",
+        Icon = "@drawable/icon",
+        MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode)]
+    public class MainActivity : AvaloniaMainActivity
+    {
+    }
 }
