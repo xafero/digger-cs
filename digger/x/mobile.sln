@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.Android", "Digger.An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.Xamarin", "Digger.Xamarin\Digger.Xamarin.csproj", "{AC7F857D-7CC5-4E49-89D6-26C42DF61FE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Classic", "Digger.Classic\Digger.Classic.csproj", "{8E222213-561C-4D73-B115-9969858E44CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.Classic", "..\b\Digger.Classic\Digger.Classic.csproj", "{8E222213-561C-4D73-B115-9969858E44CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.API", "Digger.API\Digger.API.csproj", "{C73BDCC8-677C-4EC8-97F7-2995D7C6C22B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digger.API", "..\b\Digger.API\Digger.API.csproj", "{C73BDCC8-677C-4EC8-97F7-2995D7C6C22B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digger.iOS", "Digger.iOS\Digger.iOS.csproj", "{A146B702-6A7C-4E22-A050-3288AC6509D6}"
 EndProject

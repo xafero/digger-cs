@@ -17,6 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Digger.Classic\Digger.Classic.csproj" />
+    <ProjectReference Include="..\..\b\Digger.Classic\Digger.Classic.csproj" />
   </ItemGroup>
 </Project>
