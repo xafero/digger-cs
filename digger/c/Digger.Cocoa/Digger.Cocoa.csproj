@@ -84,11 +84,11 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Digger.Classic\Digger.Classic.csproj">
+    <ProjectReference Include="..\..\b\Digger.Classic\Digger.Classic.csproj">
       <Project>{CB949DB9-514C-47B3-935A-41F454800EF5}</Project>
       <Name>Digger.Classic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Digger.API\Digger.API.csproj">
+    <ProjectReference Include="..\..\b\Digger.API\Digger.API.csproj">
       <Project>{6993D597-7746-4252-A847-502A028ACC93}</Project>
       <Name>Digger.API</Name>
     </ProjectReference>
