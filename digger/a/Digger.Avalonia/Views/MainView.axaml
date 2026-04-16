@@ -3,14 +3,180 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Digger.ViewModels"
+             xmlns:xa="using:Digger.Xamarin"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Digger.Views.MainView"
              x:DataType="vm:MainViewModel">
 
-  <Design.DataContext>
-    <vm:MainViewModel />
-  </Design.DataContext>
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-  
+    <UserControl.Resources>
+        <ControlTheme x:Key="ControlBtn" TargetType="Button">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="44"/>
+            <Setter Property="Opacity" Value="0.75"/>
+            <Setter Property="CornerRadius" Value="35"/>
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </ControlTheme>
+        <ControlTheme x:Key="OptionBtn" TargetType="Button">
+            <Setter Property="FontSize" Value="27"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </ControlTheme>
+    </UserControl.Resources>
+
+    <Grid Background="Black" x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0"
+                Grid.Column="1"
+                Padding="10"
+                CornerRadius="0"
+                Background="Black"
+                x:Name="diggerFrame"
+                BorderBrush="Transparent">
+            <xa:MobileDigger x:Name="myCanvas"/>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              ColumnSpacing="2"
+              RowSpacing="2"
+              x:Name="allButtons">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Content="&#x25B3;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="UpButton_Clicked"/>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Content="&#x25C1;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="LeftButton_Clicked"/>
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Content="&#x25C6;"
+                    Theme="{StaticResource ControlBtn}"
+                    Background="DarkGray"
+                    Click="FireButton_Clicked"/>
+            <Button Grid.Row="1"
+                    Grid.Column="2"
+                    Content="&#x25B7;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="RightButton_Clicked"/>
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Content="&#x25BD;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="DownButton_Clicked"/>
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    Content="&#x2717;"
+                    Theme="{StaticResource OptionBtn}"
+                    Click="StopButton_Clicked"/>
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Content="&#x270D;"
+                    Theme="{StaticResource OptionBtn}"
+                    Click="InputButton_Clicked"/>
+        </Grid>
+
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              ColumnSpacing="2"
+              RowSpacing="2"
+              x:Name="leftButtons">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    Content="&#x2717;"
+                    Theme="{StaticResource OptionBtn}"
+                    Click="StopButton_Clicked"/>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Content="&#x25C6;"
+                    Theme="{StaticResource ControlBtn}"
+                    Background="DarkGray"
+                    Click="FireButton_Clicked"/>
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Content="&#x25B3;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="UpButton_Clicked"/>
+            <Button Grid.Row="3"
+                    Grid.Column="0"
+                    Content="&#x25C1;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="LeftButton_Clicked"/>
+        </Grid>
+
+        <Grid Grid.Row="0"
+              Grid.Column="2"
+              ColumnSpacing="2"
+              RowSpacing="2"
+              x:Name="rightButtons">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    Content="&#x270D;"
+                    Theme="{StaticResource OptionBtn}"
+                    Click="InputButton_Clicked"/>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Content="&#x25C6;"
+                    Theme="{StaticResource ControlBtn}"
+                    Background="DarkGray"
+                    Click="FireButton_Clicked"/>
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Content="&#x25B7;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="RightButton_Clicked"/>
+            <Button Grid.Row="3"
+                    Grid.Column="0"
+                    Content="&#x25BD;"
+                    Theme="{StaticResource ControlBtn}"
+                    Click="DownButton_Clicked"/>
+        </Grid>
+    </Grid>
+
 </UserControl>
