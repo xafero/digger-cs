@@ -1,6 +1,6 @@
 ﻿using Avalonia.Labs.Controls;
 
-namespace Digger.Xamarin
+namespace Digger.Avalonia.Custom
 {
 	internal abstract class AppletCompat : SKCanvasView
 	{

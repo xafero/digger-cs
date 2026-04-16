@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using Digger.Avalonia;
 
 // ReSharper disable InconsistentNaming
 

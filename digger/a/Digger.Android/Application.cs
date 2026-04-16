@@ -2,6 +2,7 @@
 using Android.Runtime;
 using Avalonia;
 using Avalonia.Android;
+using Digger.Avalonia;
 
 namespace Digger.Android
 {

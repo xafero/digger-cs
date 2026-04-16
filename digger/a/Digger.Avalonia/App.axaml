@@ -1,11 +1,12 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:Digger"
-             x:Class="Digger.App"
+             xmlns:tools="clr-namespace:Digger.Avalonia.Tools"
+             x:Class="Digger.Avalonia.App"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <tools:ViewLocator/>
     </Application.DataTemplates>
 
     <Application.Styles>

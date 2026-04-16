@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Digger.ViewModels;
+using Digger.Avalonia.ViewModels;
 
-namespace Digger
+namespace Digger.Avalonia.Tools
 {
     [RequiresUnreferencedCode("NOYB")]
     public class ViewLocator : IDataTemplate

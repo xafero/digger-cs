@@ -1,15 +1,13 @@
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using System;
 using System.Collections.Generic;
 using Avalonia;
-using Digger.Xamarin;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Digger.Avalonia.Custom;
 
 // ReSharper disable InconsistentNaming
 
-namespace Digger.Views
+namespace Digger.Avalonia.Views
 {
     public partial class MainView : UserControl
     {

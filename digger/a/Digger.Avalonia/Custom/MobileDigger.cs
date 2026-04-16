@@ -1,10 +1,9 @@
 ﻿using System;
 using Avalonia.Labs.Controls;
 using Digger.API;
-using Digger.Maui;
 using SkiaSharp;
 
-namespace Digger.Xamarin
+namespace Digger.Avalonia.Custom
 {
 	internal class MobileDigger : AppletCompat, IFactory
 	{

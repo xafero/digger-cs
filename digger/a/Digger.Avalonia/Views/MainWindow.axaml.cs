@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Digger.Views
+namespace Digger.Avalonia.Views
 {
     public partial class MainWindow : Window
     {

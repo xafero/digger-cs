@@ -1,8 +1,6 @@
 ﻿using Digger.API;
-using Digger.API;
-using Digger.Xamarin;
 
-namespace Digger.Maui
+namespace Digger.Avalonia.Custom
 {
 	internal class MobileRefresher : IRefresher
 	{

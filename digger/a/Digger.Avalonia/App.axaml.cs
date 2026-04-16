@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Digger.ViewModels;
-using Digger.Views;
+using Digger.Avalonia.ViewModels;
+using Digger.Avalonia.Views;
 
-namespace Digger
+namespace Digger.Avalonia
 {
     public partial class App : Application
     {

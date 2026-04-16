@@ -1,16 +1,16 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Digger.ViewModels"
+        xmlns:vm="using:Digger.Avalonia.ViewModels"
+        xmlns:v="using:Digger.Avalonia.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="using:Digger.Views"
         mc:Ignorable="d" 
         d:DesignWidth="500" d:DesignHeight="850"
         Width="500" Height="850"
-        x:Class="Digger.Views.MainWindow"
+        x:Class="Digger.Avalonia.Views.MainWindow"
         Icon="/Assets/logo.ico"
         Title="Digger">
         
-        <views:MainView />
+        <v:MainView />
         
 </Window>

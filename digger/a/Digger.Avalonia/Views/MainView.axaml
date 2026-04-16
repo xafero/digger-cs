@@ -2,10 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Digger.ViewModels"
-             xmlns:xa="using:Digger.Xamarin"
+             xmlns:vm="using:Digger.Avalonia.ViewModels"
+             xmlns:custom="clr-namespace:Digger.Avalonia.Custom"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Digger.Views.MainView"
+             x:Class="Digger.Avalonia.Views.MainView"
              x:DataType="vm:MainViewModel">
 
     <Design.DataContext>
@@ -52,7 +52,9 @@
                 Background="Black"
                 x:Name="diggerFrame"
                 BorderBrush="Transparent">
-            <xa:MobileDigger x:Name="myCanvas"/>
+            <Viewbox Stretch="Uniform">
+                <custom:MobileDigger Width="320" Height="200" x:Name="myCanvas"/>
+            </Viewbox>
         </Border>
 
         <Grid Grid.Row="1"
