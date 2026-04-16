@@ -1,48 +1,59 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using System;
+using System.Collections.Generic;
+using Avalonia;
+using Digger.Xamarin;
+using Avalonia.Controls;
+
+// ReSharper disable InconsistentNaming
 
 namespace Digger.Views
 {
     public partial class MainView : UserControl
     {
+        private readonly Stack<int> _keys = new();
+
         public MainView()
         {
             InitializeComponent();
         }
 
-        private void UpButton_Clicked(object? sender, RoutedEventArgs e)
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            throw new System.NotImplementedException();
+            base.OnAttachedToVisualTree(e);
+            OnAppearing();
         }
 
-        private void LeftButton_Clicked(object? sender, RoutedEventArgs e)
+        private void OnAppearing()
         {
-            throw new System.NotImplementedException();
+            var moby = GetHandle();
+            if (moby._digger != null)
+                return;
+            var game = new DiggerClassic.Digger(moby);
+            moby._digger = game;
+            moby.SetFocusable();
+            game.Init();
+            game.Start();
         }
 
-        private void FireButton_Clicked(object? sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
+        private MobileDigger GetHandle() => myCanvas;
 
-        private void RightButton_Clicked(object? sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
+        private void DownButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_Down);
+        private void UpButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_Up);
+        private void RightButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_Right);
+        private void LeftButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_Left);
+        private void FireButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_F1);
+        private void StopButton_Clicked(object? sender, RoutedEventArgs e) => SendKey(AppletCompat.Key_F10);
+        private void InputButton_Clicked(object? sender, RoutedEventArgs e) => SendKey('a');
 
-        private void DownButton_Clicked(object? sender, RoutedEventArgs e)
+        private void SendKey(int key)
         {
-            throw new System.NotImplementedException();
-        }
-
-        private void StopButton_Clicked(object? sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void InputButton_Clicked(object? sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
+            var dig = GetHandle();
+            while (_keys.Count >= 1)
+                dig.KeyUp(_keys.Pop());
+            dig.KeyDown(key);
+            _keys.Push(key);
         }
     }
 }
