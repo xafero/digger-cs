@@ -20,6 +20,8 @@
             <Setter Property="CornerRadius" Value="35"/>
             <Setter Property="Background" Value="DarkGray"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </ControlTheme>
         <ControlTheme x:Key="OptionBtn" TargetType="Button">
             <Setter Property="FontSize" Value="27"/>
@@ -27,6 +29,8 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="DarkGray"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </ControlTheme>
     </UserControl.Resources>
 
