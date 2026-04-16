@@ -22,13 +22,16 @@ namespace Digger
                     DataContext = new MainViewModel()
                 };
             }
-            else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
+            else if (ApplicationLifetime is IActivityApplicationLifetime mobile)
             {
-                singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = new MainViewModel() };
+                mobile.MainViewFactory = () => new MainView
+                {
+                    DataContext = new MainViewModel()
+                };
             }
-            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime single)
             {
-                singleViewPlatform.MainView = new MainView
+                single.MainView = new MainView
                 {
                     DataContext = new MainViewModel()
                 };
