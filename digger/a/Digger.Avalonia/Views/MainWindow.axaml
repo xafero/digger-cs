@@ -8,7 +8,7 @@
         d:DesignWidth="600" d:DesignHeight="450"
         Width="600" Height="450"
         x:Class="Digger.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/logo.ico"
         Title="Digger">
         <views:MainView />
 </Window>
