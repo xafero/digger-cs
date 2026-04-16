@@ -5,7 +5,7 @@ using Avalonia.Android;
 namespace Digger.Android
 {
     [Activity(
-        Label = "Digger.Android",
+        Label = "Digger Android",
         Theme = "@style/MyTheme.NoActionBar",
         Icon = "@drawable/icon",
         MainLauncher = true,
